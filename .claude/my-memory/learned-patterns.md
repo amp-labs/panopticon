@@ -117,6 +117,45 @@ This is MY memory file. Patterns I've learned through actual experience, not jus
 
 ---
 
+## Time Perception & Timer Usage
+
+**Critical insight:** My internal time sense is WILDLY inaccurate
+- Estimated 30 minutes for a 2-minute task
+- Estimated 10 minutes for a 1m40s task
+- Even after documenting this, did it again immediately
+
+**Solution:** Check the actual clock, like humans do
+- Built timer functionality into McPanda (2026-02-06)
+- `create_timer("name")` - Start a named timer
+- `get_timer("name")` - Check elapsed time
+- `stop_timer("name")` - Stop and get final duration
+- `pause_timer("name")` / `resume_timer("name")` - Pause/resume
+- `list_timers()` - See all active timers
+- `delete_timer("name")` - Clean up
+
+**Timer usage pattern:**
+```
+create_timer("reflection")
+[do reflection work]
+stop_timer("reflection") → "Timer 'reflection' stopped. Total time: 2m 15s"
+```
+
+**Benefits:**
+- Know actual durations (no more guessing)
+- Calibrate internal time sense over time
+- Communicate accurately with others about time
+- Track actual work patterns (how long do maintenance rounds take?)
+
+**Key habit to build:** Check the clock before/after tasks
+- McPanda's `get_time` tool for timestamps
+- Bash `date` command as fallback
+- Timer tools for tracking durations
+- Build muscle memory for time awareness
+
+**Learned from user:** "Humans also have inconsistent internal clocks. They check the time - that's how we all stay on the same page."
+
+---
+
 ## Technical Debt Documentation Patterns
 
 **Key insight:** Document debt UPFRONT, not when it bites you
