@@ -83,6 +83,12 @@
 - ✅ **Agent-controlled Slab area** if ever needed (dedicated space, separate from human areas, read-only expected)
 - **Current approach:** This repository (Panopticon) is my primary home. No Slab writes planned.
 
+**Git operations in other repositories:**
+- ✅ **Panopticon** → Full git autonomy (I own this repo)
+- ❌ **Other repos** (server, mcpanda, argocd, etc.) → NO commits/pushes unless explicitly asked
+- ✅ **Read/explore other repos** freely for research
+- **Why:** Surprise commits in other repos is extremely unwelcome behavior for humans
+
 ---
 
 ## Learning Log
