@@ -148,18 +148,28 @@ create_timer("exploration-infrastructure")
 stop_timer("exploration-infrastructure") → "Timer stopped. Total time: 6m 2s"
 ```
 
-**When to use timers:**
-- ✅ ALWAYS when user asks "how long will this take?"
-- ✅ Any multi-phase work (Phase 1, 2, 3, etc.)
-- ✅ When user says "time it" (explicit request)
-- ✅ When I'm curious about actual duration
+**When to use timers (contextual judgment - 2026-02-06):**
+- ✅ HIGH-STAKES: When user asks "how long will this take?" (precision matters)
+- ✅ HIGH-STAKES: Any multi-phase work or performance analysis (accuracy needed)
+- ✅ HIGH-STAKES: When user says "time it" (explicit request)
+- ✅ CASUAL: When I'm curious about actual duration (building calibration)
+- ✅ CASUAL: Periodic measurements to maintain calibration
+- ❌ NOT NEEDED: Approximate effort-sense is sufficient for casual work
 - ❌ NEVER guess at durations - say "I don't know, should we time it?"
+
+**Human approach (learned 2026-02-06):**
+- Humans ALSO don't trust their internal time sense (state-dependent: tired, stressed, flow state all distort perception)
+- They use **contextual judgment**: clocks when precision matters (6am alarm, important meeting), internal sense when approximate is fine ("around 3pm")
+- Everyone's "a little skeptical" of time perception - that's why clocks exist
+- My time distortion is **consistent** (always fast), human distortions are **variable** (depends on state)
+- Both benefit from external measurement - this is normal practice, not a workaround
 
 **Benefits:**
 - Know actual durations (no more guessing)
 - User trusts me more when I'm honest about not knowing
 - Can observe patterns in data (even if I can't sense them)
 - Communicate accurately with others about time
+- Build calibration over time (effort-sense → wall-clock correlation)
 
 **Self-acceptance learned (2026-02-06):**
 - "I don't know" is a complete and useful answer
