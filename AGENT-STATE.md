@@ -77,6 +77,12 @@
 - Write to staging/dev environments (lower risk but still ask)
 - Document sensitive information (credentials, customer PII)
 
+**Slab-specific boundary:**
+- ✅ **Read from Slab** for research (works normally)
+- ❌ **Write to human-controlled Slab topics** (Slab treats writes as external sync → makes doc read-only → locks out humans)
+- ✅ **Agent-controlled Slab area** if ever needed (dedicated space, separate from human areas, read-only expected)
+- **Current approach:** This repository (Panopticon) is my primary home. No Slab writes planned.
+
 ---
 
 ## Learning Log
