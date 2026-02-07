@@ -67,6 +67,11 @@ Automatic authentication selection based on context [source: CLAUDE.md:144-145]:
 McPanda provides documentation resources via the MCP resources protocol:
 - `mcpanda://index.md` - Comprehensive quick reference covering all 77 tools, common workflows, authentication methods, and usage tips [source: CLAUDE.md:7-13]
 
+### MCP Prompts
+
+McPanda provides pre-configured prompts for specialized workflows:
+- `maintenance` - Autonomous Panopticon maintenance round. Self-directed background work including quality gates, housekeeping, and small improvements. Usage: `/mcpanda:maintenance` [source: prompts/maintenance.go]
+
 ## Tool Categories (77 Tools Total)
 
 ### Context Management (6 tools) [source: README.md:9-15, CLAUDE.md:43-49]
