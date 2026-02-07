@@ -182,6 +182,60 @@ This file tracks known technical debt in the Panopticon repository. Technical de
 
 ---
 
+### DEBT-008: Autonomous research sequential processing
+**Created:** 2026-02-06
+**Component:** autonomous_research.py
+**Category:** Performance
+**Impact:**
+- Slow at scale (18 gaps × 5min = 90min total)
+- Can't parallelize research for faster completion
+- Single failure blocks remaining gaps
+
+**Triggers:**
+- When gap count > 50 (total time > 4 hours)
+- When total research time > 2 hours becomes blocking
+- When parallel research would provide significant time savings
+
+**Cost to fix:** 4 hours (parallel orchestration with coordination)
+
+**Technical note:**
+- Sequential is safer and easier to debug for v1
+- Parallel requires coordination to prevent conflicts
+- Would need dependency analysis between gaps
+- Retry logic becomes more complex with parallel execution
+
+**Decision:** Sequential acceptable for v1 (18 gaps manageable)
+**Owner:** autonomous_research.py implementation
+
+---
+
+### DEBT-009: No cross-gap context sharing
+**Created:** 2026-02-06
+**Component:** autonomous_research.py
+**Category:** Intelligence
+**Impact:**
+- Duplicate research when gaps have overlapping topics
+- Missed connections between related gaps
+- Each research task starts from scratch
+
+**Triggers:**
+- When gaps have obvious overlap (same service, related concepts)
+- When duplicate research is observed in multiple gap results
+- When researcher requests shared context mechanism
+
+**Cost to fix:** 8 hours (shared context mechanism + refactor)
+
+**Technical note:**
+- Independent tasks are simpler for v1
+- Shared context requires persistence between spawned instances
+- Would need to track what each gap learned
+- Context accumulation could help later gaps benefit from earlier ones
+
+**Decision:** Independent tasks acceptable for v1
+**Owner:** autonomous_research.py implementation
+
+---
+
 ## Resolved Debt
 
 _(Debt that has been addressed - kept for historical reference)_
@@ -205,3 +259,10 @@ _(Debt that has been addressed - kept for historical reference)_
 - Triggers clearly defined for when to address each item
 
 **Philosophy:** Ship with known debt, track it explicitly, address when triggered. Don't over-engineer before validating the design works.
+
+### 2026-02-06: Autonomous Research Loop Debt Added
+- Added DEBT-008 (sequential processing) and DEBT-009 (no context sharing)
+- Both are implementation debt acceptable for v1
+- Sequential processing chosen for safety and simplicity (18 gaps manageable)
+- Cross-gap context sharing deferred until overlap becomes problematic
+- Total debt items: 9 (2 strategic, 1 tactical, 6 implementation)
