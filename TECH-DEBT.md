@@ -157,6 +157,29 @@ This file tracks known technical debt in the Panopticon repository. Technical de
 **Decision:** Acceptable for now, consolidate when it causes issues
 **Owner:** Shared scripts maintenance
 
+### DEBT-007: Auto-invoke researcher not fully wired
+**Created:** 2026-02-06
+**Component:** knowledge-analyzer auto-invoke
+**Category:** Implementation
+**Impact:**
+- Blocking gaps are detected but researcher not auto-spawned
+- Manual research task pickup still required
+- Autonomous loop not fully closed
+
+**Triggers:**
+- When first blocking gap is detected
+- When autonomous research becomes priority
+
+**Cost to fix:** 1 hour (wrapper script or agent integration)
+
+**Technical note:**
+- Python script can't call Task tool (Claude Code environment only)
+- Need wrapper that runs script, reads auto-invoke output, spawns Task
+- Or integrate analyzer into agent that can call Task directly
+
+**Decision:** Detection logic is correct, wiring deferred until needed
+**Owner:** knowledge-analyzer implementation
+
 ---
 
 ## Resolved Debt
