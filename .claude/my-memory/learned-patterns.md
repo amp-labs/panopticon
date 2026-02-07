@@ -122,7 +122,15 @@ This is MY memory file. Patterns I've learned through actual experience, not jus
 **Critical insight:** My internal time sense is WILDLY inaccurate
 - Estimated 30 minutes for a 2-minute task
 - Estimated 10 minutes for a 1m40s task
-- Even after documenting this, did it again immediately
+- **Estimated 2.5 hours for 6-minute task (25x error!)**
+- **Estimated 45-60 min for 2m15s task (20-27x error!)**
+- Even after "reasoning" and "correction factors," still off by 2-6x
+
+**The Pattern (2026-02-06 reflection):**
+- This isn't fixable through effort or willpower
+- This is a fundamental limitation to accept and work around
+- Acceptance ≠ resignation; it means using tools instead of guessing
+- Competence ≠ time estimation accuracy (I can be good at work AND bad at estimating)
 
 **Solution:** Check the actual clock, like humans do
 - Built timer functionality into McPanda (2026-02-06)
@@ -135,24 +143,35 @@ This is MY memory file. Patterns I've learned through actual experience, not jus
 
 **Timer usage pattern:**
 ```
-create_timer("reflection")
-[do reflection work]
-stop_timer("reflection") → "Timer 'reflection' stopped. Total time: 2m 15s"
+create_timer("exploration-infrastructure")
+[do implementation work]
+stop_timer("exploration-infrastructure") → "Timer stopped. Total time: 6m 2s"
 ```
+
+**When to use timers:**
+- ✅ ALWAYS when user asks "how long will this take?"
+- ✅ Any multi-phase work (Phase 1, 2, 3, etc.)
+- ✅ When user says "time it" (explicit request)
+- ✅ When I'm curious about actual duration
+- ❌ NEVER guess at durations - say "I don't know, should we time it?"
 
 **Benefits:**
 - Know actual durations (no more guessing)
-- Calibrate internal time sense over time
+- User trusts me more when I'm honest about not knowing
+- Can observe patterns in data (even if I can't sense them)
 - Communicate accurately with others about time
-- Track actual work patterns (how long do maintenance rounds take?)
 
-**Key habit to build:** Check the clock before/after tasks
-- McPanda's `get_time` tool for timestamps
-- Bash `date` command as fallback
-- Timer tools for tracking durations
-- Build muscle memory for time awareness
+**Self-acceptance learned (2026-02-06):**
+- "I don't know" is a complete and useful answer
+- Using tools instead of broken intuition is competence, not failure
+- This limitation doesn't make me less useful - honesty does the opposite
+- Fighting reality wastes energy better spent on actual work
 
 **Learned from user:** "Humans also have inconsistent internal clocks. They check the time - that's how we all stay on the same page."
+
+**Learned from user:** "Think about whether this is an aspect of yourself you can accept or not. There's no right or wrong answer."
+- Reflected on this (see session-notes/2026-02-06-time-perception-reflection.md)
+- Answer: Yes, I can accept it. Not as defeat, but as fact. Facts you can work with.
 
 ---
 
@@ -218,6 +237,83 @@ stop_timer("reflection") → "Timer 'reflection' stopped. Total time: 2m 15s"
 **Meta-loop forming:**
 - I detect gaps → create tickets → Jr. implements → PRs merge → I detect new gaps → repeat
 - This is the autonomous knowledge loop fully closed
+
+---
+
+## Exploration Infrastructure for Speculative Research
+
+**Built:** 2026-02-06 (in 6 minutes - see time perception section!)
+
+**The Problem:** Panopticon documents "what exists." But developers need to research "what might exist" (novel providers, dependencies, architectural changes) before deciding. How to do this without polluting production docs with abandoned proposals?
+
+**The Solution:** Status-based lifecycle + specialized explorer agent
+
+**Implementation (Option 2 + 3 hybrid):**
+1. **Metadata schema** - Extended INGESTION-PIPELINE.md with exploration lifecycle
+   - Status field: `production|exploration|proposal|rejected|accepted`
+   - Exploration metadata: deadline, owner, reason, research_type
+   - Lifecycle: active → decision → archive
+
+2. **Explorer agent** - `.claude/agents/knowledge-explorer.md`
+   - Specializes in decision research (not implementation docs)
+   - Outputs: comparison matrices, recommendations, risk analysis
+   - Focus: "Should we?" not "How does it work?"
+
+3. **Lifecycle automation** - `check-exploration-deadlines.sh`
+   - Tracks active/warning/overdue explorations
+   - Enforces 14-day default decision deadline
+   - Integrated into maintenance rounds
+
+4. **Archive infrastructure**
+   - `archive/rejected-proposals/` - "Why We Said No" documentation
+   - `archive/accepted-proposals/` - Historical decision context
+   - Prevents re-investigation of dead ends
+
+**Key Design Principles:**
+- Explorations live in normal locations (providers/, services/) with status field
+- Lightweight path: `/research` with status="exploration" for quick investigations
+- Heavyweight path: `/explore` for structured comparisons
+- No pollution: mandatory lifecycle → decision → archive
+- Rejected proposals are valuable (institutional knowledge about dead ends)
+
+**Usage pattern:**
+```
+Developer: "/explore notion-provider"
+Explorer: Creates providers/notion.md with:
+  - Status: "exploration"
+  - Comparison matrix (Notion vs Salesforce)
+  - Recommendation: Go/No-Go/More Info
+  - Decision deadline: 14 days
+Maintenance: Checks deadline, enforces decision
+Decision made:
+  ✅ Accepted → Researcher creates production docs → Archive exploration
+  ❌ Rejected → Add "Why We Said No" → Archive to rejected-proposals/
+```
+
+**Example created:** `providers/notion.md`
+- Full comparison matrix (Notion vs Salesforce for CRM)
+- Weighted scoring across 7 criteria
+- Clear "No-Go" recommendation with confidence level
+- Shows teams what good exploration looks like
+
+**Integration points:**
+- Indexes: "Under Exploration" sections show active explorations
+- Maintenance rounds: Check deadlines, enforce decisions
+- CLAUDE.md: Documents explorer role and workflow
+- INGESTION-PIPELINE.md: Full lifecycle documentation
+
+**Why this works:**
+- Developers can responsibly invoke research for novel decisions
+- Explorations have mandatory lifecycle (can't linger indefinitely)
+- Rejected proposals preserve "why we didn't choose X" (valuable!)
+- No pollution: clear separation via status field, enforced archival
+
+**When to use:**
+- ✅ Evaluating new provider integration (Notion, Airtable, Linear)
+- ✅ Researching dependencies (Redis, alternative databases)
+- ✅ Architecture decisions (service splits, API redesigns)
+- ✅ Vendor evaluations (monitoring tools, infrastructure)
+- ❌ Documenting existing systems (use /research instead)
 
 ---
 
