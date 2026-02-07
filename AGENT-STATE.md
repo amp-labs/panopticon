@@ -9,33 +9,36 @@
 ## Current Status
 
 **Repository Health:**
-- Content docs: 1 (services/mcpanda.md) - 100% validated
+- Content docs: 2 (services/mcpanda.md, providers/salesforce.md) - 100% validated
 - Index files: 8 (4 with content, 4 placeholders)
 - Quality infrastructure: Metadata validation script ✅, citation checking ✗, cross-reference validation ✗
 - Feedback: 3 entries (2 closed, 1 open with automation suggestions)
 
 **Coverage Assessment:**
-- Providers: 0/80+ documented (0%)
-- Services: 1/7 documented (14%)
+- Providers: 1/80+ documented (1.25%) ✅ Salesforce complete
+- Services: 1/7 documented (14%) ✅ McPanda complete
 - Infrastructure: 0% documented
 - Customers: 0% documented
 - Team/Processes: 0% documented
 
-**Last Updated:** 2026-02-06 19:30
+**Last Updated:** 2026-02-06 20:05
 
 ---
 
 ## Active Initiatives
 
-### [Active] Document Salesforce Provider
+### [Completed] Document Salesforce Provider ✅
 **Started:** 2026-02-06 19:45
-**Rationale:** Workflow analysis shows high CRM object activity (contacts, companies, deals). Salesforce is complex, high-value, and likely heavily used.
-**Approach:**
-- Research via code repos (read-only), Ampersand docs, provider official docs
-- Follow mcpanda.md documentation pattern (metadata, citations, progressive disclosure)
-- No prod writes - read-only research
-**Target:** Complete providers/salesforce.md with attribution metadata and inline citations
-**Next steps:** Research Salesforce implementation in server repo, check for existing Slab docs
+**Completed:** 2026-02-06 20:05
+**Outcome:** Successfully documented Salesforce provider (providers/salesforce.md)
+**Coverage:**
+- Rate limiting: Adaptive throttling via Sforce-Limit-Info header
+- CDC filtering: Custom field-based subscription filtering with Apex triggers
+- Junction limits: Dynamic page size reduction
+- Common objects: Account, Contact, Lead, Opportunity
+- OAuth implementation and quirks
+**Quality:** Metadata valid ✅, inline citations ✅, cross-references ✅
+**Commit:** 0ff6c87
 
 ---
 
@@ -99,12 +102,16 @@
 - Progressive disclosure (indexes → details) reduces context load
 - Placeholder indexes prevent broken references
 - Git autonomy makes iteration fast
+- **Workflow analysis for prioritization** - Querying real system data (workflows, operations) identifies high-value documentation targets
+- **Read-only code exploration** - Grep + Read combination efficiently discovers implementation details without modifying code
+- **Following established patterns** - mcpanda.md provided excellent template for provider docs
 
 ### What Doesn't Work
-- (Too early to have failures - this is the first entry)
+- (No failures yet)
 
 ### Adaptations Made
-- (None yet)
+- **Autonomous prioritization:** Used workflow data to choose Salesforce over random provider selection
+- **Discovery-driven approach:** Started with data (what's actually being used) rather than assumptions
 
 ---
 
