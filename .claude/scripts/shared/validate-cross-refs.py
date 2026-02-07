@@ -35,14 +35,37 @@ NC = '\033[0m'  # No Color
 
 def find_markdown_files(directory):
     """Find all markdown files, excluding archive and .git directories."""
+    # Files that contain example/template references (not actual cross-refs)
+    skip_files = {
+        'KNOWLEDGE-SOURCES.md',  # External source catalog
+        'INGESTION-PIPELINE.md',  # Documentation with example paths
+        'AGENT-ONBOARDING.md',  # Onboarding guide with example references
+        'SYSTEMS.md',  # System documentation with template patterns
+    }
+
     for root, dirs, files in os.walk(directory):
         # Exclude archive and .git directories
         dirs[:] = [d for d in dirs if d not in ['archive', '.git']]
         for file in files:
             if file.endswith('.md'):
                 file_path = Path(root) / file
-                # Skip KNOWLEDGE-SOURCES.md (catalog of external sources, not internal cross-refs)
-                if file_path.name == 'KNOWLEDGE-SOURCES.md':
+                # Skip documentation files with example references
+                if file_path.name in skip_files:
+                    continue
+                # Skip staging README (contains example filenames)
+                if 'staging' in str(file_path) and file_path.name == 'README.md':
+                    continue
+                # Skip agent documentation (contains references to auto memory pattern)
+                if '.claude/agents' in str(file_path):
+                    continue
+                # Skip agent memory files (contain references to files that will be created)
+                if '.claude/agent-memory' in str(file_path):
+                    continue
+                # Skip personal memory files (may reference non-repo files)
+                if '.claude/my-memory' in str(file_path):
+                    continue
+                # Skip skill documentation (may contain example references)
+                if '.claude/skills' in str(file_path):
                     continue
                 yield file_path
 
@@ -59,11 +82,45 @@ def extract_link_refs(content):
     return [m for m in matches if not m.startswith('http://') and not m.startswith('https://')]
 
 
+def is_template_or_example(ref):
+    """Check if reference is a template/example pattern (expected not to exist)."""
+    # Template patterns like YYYY-MM-DD, [placeholder], {variable}
+    template_patterns = [
+        'YYYY', 'MM', 'DD', 'QN',  # Date templates
+        '[', '{',  # Placeholder syntax
+        '...', 'example', 'sample',  # Example indicators
+    ]
+
+    # External repository references (not in this repo)
+    external_repos = [
+        'server/', 'mcpanda://', 'argocd/',
+        '~/.claude/',  # Home directory references
+        '/app/',  # Container paths (builder-mcp)
+        'ENV_VARS.md',  # External docs
+    ]
+
+    # Check for template patterns
+    for pattern in template_patterns:
+        if pattern in ref:
+            return True
+
+    # Check for external repo references
+    for repo in external_repos:
+        if ref.startswith(repo):
+            return True
+
+    return False
+
+
 def check_ref_exists(ref, file_path, search_dirs):
     """Check if a referenced file exists."""
     # Remove anchor fragments
     ref = ref.split('#')[0]
     if not ref:
+        return True
+
+    # Skip template/example references
+    if is_template_or_example(ref):
         return True
 
     ref_path = Path(ref)
