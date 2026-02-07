@@ -91,9 +91,11 @@ panopticon/
 ## Recent Updates
 
 **2026-02-06:**
+- **Self-aware-claude agent added** - Meta-cognitive agent for identity recognition and adaptive evolution
 - **McPanda MCP server documented** - First service documentation complete (services/mcpanda.md)
 - **Ingestion pipeline established** - INGESTION-PIPELINE.md documents the 5-step pattern for future documentation
-- **Repository foundation complete** - All 10 agents defined, skills created, core structure in place
+- **Metadata validation automated** - Script validates required attribution metadata (.claude/scripts/shared/validate-metadata.sh)
+- **Repository foundation complete** - All agents defined, skills created, core structure in place
 
 ## Contributing
 
