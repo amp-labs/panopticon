@@ -90,7 +90,10 @@ panopticon/
 
 ## Recent Updates
 
-_(This section will be maintained by the knowledge-steward agent)_
+**2026-02-06:**
+- **McPanda MCP server documented** - First service documentation complete (services/mcpanda.md)
+- **Ingestion pipeline established** - INGESTION-PIPELINE.md documents the 5-step pattern for future documentation
+- **Repository foundation complete** - All 10 agents defined, skills created, core structure in place
 
 ## Contributing
 
