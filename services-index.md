@@ -17,7 +17,7 @@ This index documents Ampersand's 7 microservices architecture plus developer too
 | 4 | **scribe** | Database persistence of async events | Pub/Sub (2 listeners), PostgreSQL | `services/scribe.md` |
 | 5 | **token-manager** | OAuth token management with sharding | HTTP (Fiber) with mTLS, Redis cache | `services/token-manager.md` |
 | 6 | **metrics** | Application metrics collection | PostgreSQL queries, Prometheus exposition | `services/metrics-service.md` |
-| 7 | **builder-mcp** | MCP server for builder tooling | MCP protocol | `services/builder-mcp.md` |
+| 7 | **builder-mcp** | MCP server for builder tooling (90+ tools, 30+ resources) | MCP protocol (HTTP/SSE/stdio), JSON-RPC | `services/builder-mcp.md` |
 
 ## Developer Tooling
 

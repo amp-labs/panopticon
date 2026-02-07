@@ -100,45 +100,85 @@ Organization
 5. **Google Cloud Storage** -- Read results stored for webhook delivery
 6. **Redis** -- Token caching, rate limiting state
 
-## Shared Libraries (55+ packages)
+## Shared Libraries (56 packages)
 
-The `shared/` directory contains common code organized by domain:
+The `shared/` directory contains 56 packages organized by domain. Each package has a `CLAUDE.md` file documenting its purpose, key types, and usage.
 
-**Core domain:**
+**Core Domain:**
 - `shared/common/` -- Domain models and types (no business logic)
 - `shared/database/` -- Data access layer (GORM models, repositories, migrations)
+- `shared/dbservice/` -- Higher-level database service operations (config mutation, entity lifecycle)
 - `shared/providers/` -- Provider integration layer (connector management)
 - `shared/catalog/` -- Provider catalog and metadata
+- `shared/contextkeys/` -- Shared context key definitions for cross-package context passing
 
 **Infrastructure:**
-- `shared/ampfiber/` -- HTTP framework utilities (middleware, auth)
+- `shared/ampfiber/` -- HTTP framework utilities (middleware, auth, routing)
 - `shared/pubsub/` -- Google Pub/Sub client abstraction
 - `shared/gcs/` -- Google Cloud Storage client
 - `shared/redis/` -- Redis client abstraction
 - `shared/temporal/` -- Temporal client and queue definitions
 - `shared/crypto/` -- Encryption utilities (KMS integration)
+- `shared/transport/` -- HTTP transport with logging and security-aware header redaction
+- `shared/mcp/` -- MCP session persistence (Redis-backed, sliding TTL)
+- `shared/env/` -- Environment variable definitions
+- `shared/bootstrap/` -- Environment setup (dev/staging init of projects, keys, orgs)
 
-**Business logic:**
+**Business Logic:**
 - `shared/workflow/` -- Temporal workflow definitions (read operations)
 - `shared/write/` -- Write operation logic
 - `shared/subscribe/` -- Subscription management
 - `shared/oauth/` -- OAuth flow implementations
 - `shared/token/` -- Token management logic
 - `shared/delivery/` -- Webhook delivery logic
+- `shared/operations/` -- Operation tracking and event publishing (status changes, retries)
+- `shared/trace/` -- Operation tracing for read/write/subscribe (builder-facing logs)
+- `shared/courier/` -- Message delivery routing (Svix webhooks, Kinesis, log destinations)
+- `shared/preview/` -- Test message sending to destinations with fake data
+- `shared/yaml/` -- amp.yaml manifest parsing and validation
+- `shared/zip/` -- ZIP file handling for deployment packages
+- `shared/overrides/` -- Provider/org-specific config overrides (e.g., lookback windows)
+- `shared/filters/` -- Provider-specific query filtering for reads (e.g., Marketo)
+- `shared/associations/` -- Entity associations mapping (TEMPORARY, hardcoded customer configs)
+- `shared/resolver/` -- Resource resolution
+- `shared/pagination/` -- Cursor-based and offset pagination management
 
-**Operations:**
+**Authentication and Authorization:**
+- `shared/clerk/` -- Clerk authentication integration
+- `shared/roles/` -- RBAC (Admin, OrgOwner, ProjectOwner/Editor roles, team inheritance)
+- `shared/domains/` -- Domain validation and free email provider detection (6000+ domains)
+
+**Billing and Usage:**
+- `shared/billing/` -- Billing interfaces (Zenskar/Orb)
+- `shared/biller/` -- Billing provider implementations (Zenskar, Orb, dual-write migration, mock)
+- `shared/entitlements/` -- Feature entitlements (log retention, branding removal)
+- `shared/usage/` -- Billable usage event tracking (dual-write to DB and billing provider)
+
+**Notifications:**
+- `shared/notifications/` -- Notification event publishing to Pub/Sub
+- `shared/notif/` -- Notification event delivery to builder webhooks (Pub/Sub consumer)
+- `shared/messenger/` -- Pub/Sub payload types for messenger service
+
+**Operations and Monitoring:**
 - `shared/metrics/` -- Prometheus metrics configuration
 - `shared/sentry/` -- Error tracking integration
 - `shared/logging/` -- Request/response logging
+- `shared/cloudlogging/` -- Google Cloud Logging integration
 - `shared/pprof/` -- Performance profiling
 - `shared/k8sprobe/` -- Kubernetes liveness/readiness probes
-- `shared/build/` -- Build information
+- `shared/build/` -- Build information and version tracking
+- `shared/problem/` -- RFC 7807 Problem Details error responses
+
+**Customer and Tenant:**
+- `shared/customer/` -- Customer-specific configurations (TEMPORARY hardcoded feature flags per org)
+- `shared/limiter/` -- Rate limiting
+- `shared/builder/` -- Builder info utilities
+
+**Testing:**
+- `shared/testharness/` -- Integration test harness (factory, callbacks, env setup)
+- `shared/preview/` -- Preview environment utilities
 
 **Other:**
-- `shared/billing/` -- Billing integration (Zenskar)
-- `shared/notifications/` -- Notification system
-- `shared/limiter/` -- Rate limiting
-- `shared/resolver/` -- Resource resolution
 - `shared/utils/` -- Pure utility functions
 
 ## Directory Structure
