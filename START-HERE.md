@@ -81,6 +81,11 @@ panopticon/
 
 ## Key Resources for Researchers
 
+- **SYSTEMS.md** - Catalog of organizational systems that keep this repository structured
+  - Index system, feedback system, metadata system
+  - Quality gates, citation tracking, archive process
+  - "A place for everything, and everything in its place"
+
 - **KNOWLEDGE-SOURCES.md** - Catalog of where to find Ampersand information
   - Code repositories (server, mcpanda, argocd)
   - McPanda MCP Server (77 tools for live system access)
@@ -91,6 +96,9 @@ panopticon/
 ## Recent Updates
 
 **2026-02-06:**
+- **SYSTEMS.md created** - Comprehensive documentation of all organizational systems (indexes, feedback, quality gates, metadata, citations, archives)
+- **Cross-reference validator** - Python script validates markdown links and backtick references (.claude/scripts/shared/validate-cross-refs.py)
+- **Organization as core principle** - "A place for everything, and everything in its place" added to agent memory
 - **Salesforce provider documented** - Comprehensive documentation of CRM provider with rate limiting, CDC filtering, Apex triggers (providers/salesforce.md)
 - **Placeholder indexes created** - Added team-index.md, security-index.md, observability-index.md to fix broken references
 - **Feedback archiving automated** - Script and infrastructure for managing feedback.md growth
