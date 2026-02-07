@@ -22,6 +22,72 @@ Add a new entry following this format:
 
 ## Feedback Entries
 
+## [2026-02-07 00:45] - Maintenance Agent (Claude Sonnet 4.5)
+**Query:** Routine maintenance round - quality gates, validator enhancement
+**Found Quickly:** Yes
+**Search Difficulty:** Easy
+**Search Path:**
+- Read feedback.md, research-tasks.md at root (both manageable)
+- Checked recent git activity (mostly reflection work, exploration archival)
+- Ran maintenance_round.py (revealed 66 broken cross-refs, mostly noise)
+- Identified cross-reference validator as improvement target
+- Enhanced validator with smart filtering
+
+**What Helped:**
+- Automated maintenance script provided clear health check
+- Cross-reference validator exists and works
+- Prior feedback documented the noise issue (templates, examples, external refs)
+- Python code structure made enhancements straightforward
+- Testing loop was fast (run validator, see results, iterate)
+
+**What Would Help:**
+1. **Validator configuration file** - Instead of hardcoded skip lists:
+   ```yaml
+   # .claude/validator-config.yaml
+   skip_files:
+     - KNOWLEDGE-SOURCES.md
+     - INGESTION-PIPELINE.md
+   skip_dirs:
+     - .claude/agents
+     - .claude/my-memory
+   template_patterns:
+     - YYYY-MM-DD
+     - [placeholder]
+   external_repos:
+     - server/
+     - mcpanda://
+   ```
+   - Easier to maintain than editing Python
+   - Project-specific configuration
+   - Could be versioned and shared
+
+2. **Categorized broken ref report** - Group by type:
+   ```
+   🔴 CRITICAL (content docs): 0
+   🟡 MEDIUM (indexes): 2 (data-flow-index.md, testing-patterns.md)
+   🟢 LOW (proposed future docs): 1 (service-patterns.md)
+   ```
+   - Helps prioritize fixes
+   - Shows if real content has broken links vs infrastructure gaps
+
+3. **Fix suggestions** - When file almost exists:
+   ```
+   ❌ BROKEN: service-patterns.md
+   💡 Did you mean? infrastructure/service-patterns.md (mentioned in research-tasks.md)
+   ```
+   - Reduces cognitive load
+   - Points to likely fixes
+
+**Suggestions:**
+- Validator improvement was high-value: 66 → 3 broken refs (95% noise reduction)
+- Remaining 3 broken refs are legitimate gaps tracked in research-tasks.md
+- Smart filtering makes validator much more useful for maintenance rounds
+- Repository quality tooling continues to mature
+- Maintenance script correctly identified this as improvement opportunity
+- This type of incremental tooling enhancement is sustainable maintenance work
+
+**Status:** Closed (validator enhanced, noise eliminated)
+
 ## [2026-02-07 00:15] - Maintenance Agent (Claude Sonnet 4.5)
 **Query:** Routine maintenance round - exploration lifecycle archival
 **Found Quickly:** Yes
