@@ -391,6 +391,158 @@ Backup procedures, recovery processes
 ## Source References
 ```
 
+## Exploration & Speculative Research
+
+**New capability (2026-02-06):** Panopticon now supports speculative research for novel providers, dependencies, or architectural decisions.
+
+### The Challenge
+
+Panopticon documents **what exists** at Ampersand. But developers need to research **what might exist** before making decisions. How to do this without polluting the repository with abandoned proposals?
+
+### The Solution: Status-Based Lifecycle
+
+**Mechanism:** All content (production or speculative) uses the same locations and structure, but is marked with a `status` field in frontmatter metadata.
+
+**Status values:**
+- `production` - Exists in production, fully validated
+- `exploration` - Under active research, decision pending
+- `proposal` - Formal proposal pending approval
+- `rejected` - Researched and rejected (valuable context)
+- `accepted` - Accepted proposal pending implementation
+
+### Exploration Metadata Extension
+
+For any content with `status` other than `production`:
+
+```yaml
+---
+validation_metadata:
+  # Standard attribution fields
+  attribution:
+    source: "..."
+    source_type: "..."
+    obtained_date: "YYYY-MM-DD"
+    obtained_by: "knowledge-researcher|knowledge-explorer"
+
+  # Standard validation fields
+  validation:
+    last_checked: "YYYY-MM-DD HH:MM"
+    checked_by: "..."
+    status: "accurate"
+
+  # NEW: Status and exploration fields
+  status: "exploration"  # or "proposal" | "rejected" | "accepted" | "production"
+
+  exploration:
+    started_date: "2026-02-06"
+    decision_deadline: "2026-02-20"
+    decision_owner: "chris"  # Person/team responsible for decision
+    reason: "Evaluating Notion as CRM alternative to Salesforce"
+    research_type: "provider_evaluation"  # or "dependency" | "architecture" | "vendor"
+---
+```
+
+### Lifecycle Management
+
+**Active exploration (status: "exploration"):**
+- Lives in normal content areas (providers/, services/, etc.)
+- Marked clearly in index files under "Under Exploration" section
+- Decision deadline enforced by maintenance rounds
+- After deadline: Must transition to rejected/accepted
+
+**Rejected proposals (status: "rejected"):**
+- Moved to `archive/rejected-proposals/YYYY-MM-{topic}.md`
+- Includes full research findings
+- **Critical addition:** "Why We Said No" section explaining decision rationale
+- Prevents re-investigation of dead ends
+- Valuable institutional knowledge
+
+**Accepted proposals (status: "accepted"):**
+- Transitioned to `status: "production"` when implemented
+- Archive original exploration to `archive/accepted-proposals/` for historical context
+- Production doc becomes the canonical reference
+
+### When to Use Exploration Status
+
+**Use cases:**
+- Evaluating new provider integration (Notion, Airtable, Linear)
+- Researching new dependencies (Redis, RabbitMQ, different database)
+- Architectural decisions (microservice split, API redesign)
+- Vendor evaluations (monitoring tools, infrastructure providers)
+
+**Who can create:**
+- Developers on the team can invoke `/research` or `/explore`
+- Researchers create lightweight investigations
+- Explorers create structured comparison research
+
+### Index File Format for Explorations
+
+```markdown
+# Providers Index
+
+## Production (80)
+- [Salesforce](salesforce.md) - CRM integration
+- [HubSpot](hubspot.md) - Marketing automation
+...
+
+## Under Exploration (2)
+- [Notion](notion.md) ⚠️ - CRM alternative (decision by 2026-02-20) → `providers/notion.md`
+- [Airtable](airtable.md) ⚠️ - Database integration (decision by 2026-02-15) → `providers/airtable.md`
+
+## Recently Rejected
+- [Linear](../archive/rejected-proposals/2026-01-linear.md) - Project management (rejected: limited API)
+```
+
+### Exploration vs Production Format
+
+**Production docs:** Focus on "how it works" (implementation details, APIs, workflows)
+**Exploration docs:** Focus on "should we build it" (tradeoffs, comparisons, decision criteria)
+
+**Exploration doc structure:**
+```markdown
+# Notion Provider Evaluation
+
+## Executive Summary
+**Recommendation:** [Go/No-Go/Needs More Info]
+**Confidence:** [High/Medium/Low]
+**Decision Deadline:** 2026-02-20
+
+## Decision Criteria
+| Criterion | Weight | Notion | Salesforce | Winner |
+|-----------|--------|--------|------------|--------|
+| API Quality | High | 8/10 | 9/10 | Salesforce |
+| OAuth Support | High | 7/10 | 10/10 | Salesforce |
+| Cost | Medium | 9/10 | 4/10 | Notion |
+
+## Detailed Analysis
+[Research findings with inline citations]
+
+## Recommendation
+[Detailed recommendation with reasoning]
+
+## Risks & Unknowns
+- [ ] Risk 1: Notion's webhook reliability unknown
+- [ ] Unknown: What's their SLA?
+
+## Next Steps if Approved
+1. Build POC integration
+2. Test with 2 pilot customers
+...
+
+## Next Steps if Rejected
+Archive to `archive/rejected-proposals/2026-02-notion.md` with decision rationale
+```
+
+### Maintenance Round Responsibilities
+
+**Every maintenance round checks:**
+1. Explorations past deadline → Remind decision owner
+2. Explorations >14 days old → Escalate to steward
+3. Accepted proposals not yet transitioned → Update status
+4. Rejected proposals not yet archived → Move to archive/
+
+**Automation:** `.claude/scripts/shared/check-exploration-deadlines.sh`
+
 ## Workflow Summary
 
 **knowledge-scout:**
