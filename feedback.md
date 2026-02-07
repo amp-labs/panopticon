@@ -47,7 +47,7 @@ Add a new entry following this format:
    - Source references section
 
 2. **Future improvements to consider**:
-   - Script to validate metadata completeness (`.claude/scripts/shared/validate-metadata.sh`)
+   - ✅ Script to validate metadata completeness (`.claude/scripts/shared/validate-metadata.sh`) - **IMPLEMENTED 2026-02-06**
    - Script to check citation format (`.claude/scripts/shared/check-citations.py`)
    - Template generator for new documents (`.claude/scripts/researcher/generate-doc.sh`)
    - Automated cross-reference validator
