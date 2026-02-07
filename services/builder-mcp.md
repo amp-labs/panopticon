@@ -1,14 +1,15 @@
-# Builder MCP Service
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/builder-mcp/ directory (full source), CLAUDE.md, main.go, mcp.go, tools/registry.go, core/, Dockerfile, ENV_VARS.md
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Builder MCP Service
 
 ## Overview
 

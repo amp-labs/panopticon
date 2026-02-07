@@ -1,14 +1,15 @@
-# Design Patterns and Architectural Decisions
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/docs/interface-first-design-patterns.md, server/AGENTS.md, source code analysis
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Design Patterns and Architectural Decisions
 
 ## Overview
 

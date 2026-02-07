@@ -1,14 +1,15 @@
-# Ampersand Server Architecture
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server repository (AGENTS.md, README.md, source code analysis)
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Ampersand Server Architecture
 
 ## Overview
 

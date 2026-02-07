@@ -1,14 +1,15 @@
-# GCP Infrastructure
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/argocd-infrastructure.md, server/README.md, server/cloudbuild.yaml
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# GCP Infrastructure
 
 ## Overview
 

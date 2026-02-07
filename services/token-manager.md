@@ -1,14 +1,15 @@
-# Token Manager Service
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/token-manager/main.go, routes/
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Token Manager Service
 
 ## Overview
 

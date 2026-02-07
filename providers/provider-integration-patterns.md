@@ -1,14 +1,15 @@
-# Provider Integration Patterns
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/shared/providers/, server/shared/catalog/, server/shared/oauth/, AGENTS.md
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Provider Integration Patterns
 
 ## Overview
 

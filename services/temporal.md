@@ -1,14 +1,15 @@
-# Temporal Service
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/temporal/main.go, shared/temporal/, shared/workflow/
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Temporal Service
 
 ## Overview
 

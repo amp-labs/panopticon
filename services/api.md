@@ -1,15 +1,15 @@
+---
+validation_metadata:
+  attribution:
+    source: server/api/ source code, AGENTS.md, api/routes/route.go (full route listing)
+    obtained_date: 2026-02-06
+    obtained_by: knowledge-researcher
+  validation:
+    last_checked: 2026-02-06
+    status: current
+---
+
 # API Service
-
-<!--
-attribution:
-  source: server/api/ source code, AGENTS.md, api/routes/route.go (full route listing)
-  obtained_date: 2026-02-06
-  obtained_by: knowledge-researcher
-validation:
-  last_checked: 2026-02-06
-  status: current
--->
-
 ## Overview
 
 The **api** service is the primary HTTP server handling customer requests, authentication, resource management, and orchestrating Temporal workflows. It is the main entry point for all builder interactions with the Ampersand platform.

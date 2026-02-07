@@ -1,14 +1,15 @@
-# Deployment Pipeline and CI/CD
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/cloudbuild.yaml, server/argocd-infrastructure.md, server/README.md
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Deployment Pipeline and CI/CD
 
 ## Overview
 

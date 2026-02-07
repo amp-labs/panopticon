@@ -1,14 +1,15 @@
-# Database Architecture
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/shared/database/README.md, server/database/, AGENTS.md
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Database Architecture
 
 ## Overview
 

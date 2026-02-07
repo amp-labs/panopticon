@@ -1,14 +1,15 @@
-# Messenger Service
-
-<!--
-attribution:
+---
+validation_metadata:
+  attribution:
   source: server/messenger/main.go and handler files
   obtained_date: 2026-02-06
   obtained_by: knowledge-researcher
 validation:
   last_checked: 2026-02-06
   status: current
--->
+---
+
+# Messenger Service
 
 ## Overview
 
