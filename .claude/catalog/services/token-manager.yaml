@@ -1,0 +1,99 @@
+document: services/token-manager.md
+last_analyzed: '2026-02-07T04:23:26.797414+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: token-manager
+  framework: GoFiber
+  confidence: HIGH
+coverage:
+  authentication:
+    density: brief
+    details: '| `mtls` | Mutual TLS | Production (service-to-service authentication)
+      |'
+    line_count: 1
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: mentioned
+    details: '- `routes/error.go` -- Error handling'
+    line_count: 3
+  deployment:
+    density: brief
+    details: '## Production Deployment'
+    line_count: 1
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  - temporal
+  - token-manager
+  providers: []
+  infrastructure:
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/api.md
+    context: backtick reference
+  - target: services/temporal.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "token-manager.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference token-manager.md"
+  - "token-manager.md\u2192services/temporal.md but services/temporal.md doesn't reference\
+    \ token-manager.md"
+gaps:
+- gap_id: token-manager-001
+  gap_type: mentioned_without_detail
+  topic: authentication
+  priority: medium
+  description: Authentication mentioned but not detailed
+  research_task_created: false
+- gap_id: token-manager-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: token-manager-003
+  gap_type: mentioned_without_detail
+  topic: error_handling
+  priority: medium
+  description: Error Handling mentioned but not detailed
+  research_task_created: false
+- gap_id: token-manager-004
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: token-manager-005
+  gap_type: missing_examples
+  topic: error_handling
+  priority: low
+  description: Error Handling explained but no concrete examples
+  research_task_created: false
+facts:
+- '**Centralized token refresh** -- Single point of truth for OAuth token refresh
+  operations'
+- '**Race condition prevention** -- Serializes concurrent token refresh requests'
+- '**TLS/mTLS support** -- Supports disabled, enabled, and mutual TLS modes'
+- '**Token caching** -- Reduces redundant refresh calls'
+- '`routes/route.go` -- Route registration'

@@ -1,0 +1,157 @@
+document: services/builder-mcp.md
+last_analyzed: '2026-02-07T04:23:26.773168+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: builder-mcp
+  ports:
+  - '40000'
+  framework: Fiber
+  confidence: HIGH
+coverage:
+  authentication:
+    density: mentioned
+    details: '## Authentication'
+    line_count: 3
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: brief
+    details: '|   |-- setup/                 # amp_bootstrap_project, amp_guided_setup,
+      wizards (database, fronten'
+    line_count: 1
+  deployment:
+    density: mentioned
+    details: '| Validation | ~4 | `validate_amp_yaml`, `amp_dry_run_validation` |
+      Configuration validation without'
+    line_count: 4
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: mentioned
+    details: '|   +-- token_refresh_worker.go # OAuth token refresh monitoring (currently
+      monitoring-only)'
+    line_count: 2
+  testing:
+    density: mentioned
+    details: 2. **Progressive Disclosure** - Tools are organized by journey phase
+      (Discovery, Configuration, Impl
+    line_count: 4
+mentions:
+  services:
+  - api
+  - builder-mcp
+  - mcpanda
+  providers:
+  - hubspot
+  - salesforce
+  infrastructure:
+  - docker
+  - k8s
+  - postgres
+  customers: []
+cross_references:
+  outgoing:
+  - target: ENV_VARS.md
+    context: backtick reference
+  - target: /app/instructions/progressive_discovery.md
+    context: backtick reference
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/mcpanda.md
+    context: backtick reference
+  - target: services/api.md
+    context: backtick reference
+  - target: services/design-patterns.md
+    context: backtick reference
+  - target: infrastructure/database-architecture.md
+    context: backtick reference
+  - target: infrastructure/deployment-pipeline.md
+    context: backtick reference
+  - target: providers/provider-integration-patterns.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "builder-mcp.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference builder-mcp.md"
+  - "builder-mcp.md\u2192services/api.md but services/api.md doesn't reference builder-mcp.md"
+  - "builder-mcp.md\u2192services/design-patterns.md but services/design-patterns.md\
+    \ doesn't reference builder-mcp.md"
+  - "builder-mcp.md\u2192infrastructure/database-architecture.md but infrastructure/database-architecture.md\
+    \ doesn't reference builder-mcp.md"
+  - "builder-mcp.md\u2192infrastructure/deployment-pipeline.md but infrastructure/deployment-pipeline.md\
+    \ doesn't reference builder-mcp.md"
+  - "builder-mcp.md\u2192providers/provider-integration-patterns.md but providers/provider-integration-patterns.md\
+    \ doesn't reference builder-mcp.md"
+gaps:
+- gap_id: builder-mcp-001
+  gap_type: mentioned_without_detail
+  topic: authentication
+  priority: medium
+  description: Authentication mentioned but not detailed
+  research_task_created: false
+- gap_id: builder-mcp-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: builder-mcp-003
+  gap_type: mentioned_without_detail
+  topic: error_handling
+  priority: medium
+  description: Error Handling mentioned but not detailed
+  research_task_created: false
+- gap_id: builder-mcp-004
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: builder-mcp-005
+  gap_type: mentioned_without_detail
+  topic: monitoring
+  priority: medium
+  description: Monitoring mentioned but not detailed
+  research_task_created: false
+- gap_id: builder-mcp-006
+  gap_type: mentioned_without_detail
+  topic: testing
+  priority: medium
+  description: Testing mentioned but not detailed
+  research_task_created: false
+- gap_id: builder-mcp-007
+  gap_type: missing_examples
+  topic: authentication
+  priority: low
+  description: Authentication explained but no concrete examples
+  research_task_created: false
+- gap_id: builder-mcp-008
+  gap_type: missing_examples
+  topic: deployment
+  priority: low
+  description: Deployment explained but no concrete examples
+  research_task_created: false
+- gap_id: builder-mcp-009
+  gap_type: missing_examples
+  topic: monitoring
+  priority: low
+  description: Monitoring explained but no concrete examples
+  research_task_created: false
+- gap_id: builder-mcp-010
+  gap_type: missing_examples
+  topic: testing
+  priority: low
+  description: Testing explained but no concrete examples
+  research_task_created: false
+facts:
+- '**agent-survey** - Post-integration survey for UX feedback (two parts: user survey
+  + agent assessment)'
+- '**commit** - Autonomous git commit workflow with quality gates (takes `expected_branch`
+  and `commit_message`)'
+- Multi-phase progression with branching logic
+- Elicitation-based user interaction with retry
+- Sampling for dynamic content generation

@@ -1,0 +1,61 @@
+document: providers/salesforce.md
+last_analyzed: '2026-02-07T04:23:26.767803+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  provider_name: salesforce
+  framework: Temporal
+coverage:
+  oauth:
+    density: detailed
+    details: '1. Get OAuth credentials from Ampersand API [source: scripts/sf-apex-trigger/README.md:159-162]'
+    line_count: 6
+  rate_limiting:
+    density: detailed
+    details: '**Complexity:** High (rate limiting, junction limits, CDC filtering,
+      Apex deployments)'
+    line_count: 5
+  api_versions:
+    density: not_covered
+    details: null
+    line_count: 0
+  webhooks:
+    density: not_covered
+    details: null
+    line_count: 0
+  data_model:
+    density: not_covered
+    details: null
+    line_count: 0
+  quirks:
+    density: brief
+    details: '## Known Quirks'
+    line_count: 1
+mentions:
+  services:
+  - api
+  - scribe
+  - temporal
+  providers:
+  - salesforce
+  infrastructure:
+  - temporal
+  customers: []
+cross_references:
+  outgoing: []
+  incoming: []
+gaps:
+- gap_id: salesforce-001
+  gap_type: mentioned_without_detail
+  topic: quirks
+  priority: medium
+  description: Quirks mentioned but not detailed
+  research_task_created: false
+facts:
+- '**Complex rate limiting** - Per-licensed-user API limits requiring adaptive throttling
+  [source: shared/limiter/defaults.go:177-184]'
+- '**Junction limit errors** - Special handling for relationship query limits [source:
+  shared/workflow/read/error.go:166-216]'
+- '**Apex trigger deployment** - Scripts for deploying custom triggers to track field
+  changes [source: scripts/sf-apex-trigger/README.md]'
+- 'Threshold is configurable per installation [source: shared/limiter/threshold.go:15]'
+- Ampersand monitors usage continuously during read operations

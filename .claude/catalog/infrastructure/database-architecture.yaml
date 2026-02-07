@@ -1,0 +1,66 @@
+document: infrastructure/database-architecture.md
+last_analyzed: '2026-02-07T04:23:26.758141+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  confidence: HIGH
+coverage:
+  deployment:
+    density: mentioned
+    details: '| `make migrations/apply-all` | Production/CI deployment | Applies only
+      pending migrations |'
+    line_count: 2
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  security:
+    density: not_covered
+    details: null
+    line_count: 0
+  disaster_recovery:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  providers: []
+  infrastructure:
+  - docker
+  - postgres
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/design-patterns.md
+    context: backtick reference
+  - target: infrastructure/deployment-pipeline.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "database-architecture.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference database-architecture.md"
+gaps:
+- gap_id: database-architecture-001
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: database-architecture-002
+  gap_type: missing_examples
+  topic: deployment
+  priority: low
+  description: Deployment explained but no concrete examples
+  research_task_created: false
+facts:
+- Run `atlas migration rebase`, or
+- Delete the earlier-timestamped file, regenerate, and reapply
+- '`PROJECT_ID` -- Pre-configured test project'
+- '`API_KEY` -- Test API key'
+- '`ADMIN_KEY` -- Test admin key'

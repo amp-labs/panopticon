@@ -1,0 +1,118 @@
+document: services/server-architecture.md
+last_analyzed: '2026-02-07T04:23:26.791553+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: server-architecture
+  framework: GoFiber
+coverage:
+  authentication:
+    density: detailed
+    details: '      +-- API Keys (authentication credentials)'
+    line_count: 7
+  rate_limiting:
+    density: mentioned
+    details: 6. **Redis** -- Token caching, rate limiting state
+    line_count: 2
+  error_handling:
+    density: brief
+    details: '                       * Error handling         * Standardized format'
+    line_count: 1
+  deployment:
+    density: brief
+    details: '- `shared/zip/` -- ZIP file handling for deployment packages'
+    line_count: 1
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: brief
+    details: '**Operations and Monitoring:**'
+    line_count: 1
+  testing:
+    density: mentioned
+    details: '**Testing:**'
+    line_count: 2
+mentions:
+  services:
+  - api
+  - builder-mcp
+  - mcpanda
+  - messenger
+  - scribe
+  - temporal
+  - token-manager
+  providers:
+  - hubspot
+  - notion
+  - salesforce
+  infrastructure:
+  - docker
+  - k8s
+  - kubernetes
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: CLAUDE.md
+    context: backtick reference
+  - target: services/api.md
+    context: backtick reference
+  - target: services/temporal.md
+    context: backtick reference
+  - target: services/design-patterns.md
+    context: backtick reference
+  - target: services/database-architecture.md
+    context: backtick reference
+  incoming: []
+gaps:
+- gap_id: server-architecture-001
+  gap_type: mentioned_without_detail
+  topic: rate_limiting
+  priority: medium
+  description: Rate Limiting mentioned but not detailed
+  research_task_created: false
+- gap_id: server-architecture-002
+  gap_type: mentioned_without_detail
+  topic: error_handling
+  priority: medium
+  description: Error Handling mentioned but not detailed
+  research_task_created: false
+- gap_id: server-architecture-003
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: server-architecture-004
+  gap_type: mentioned_without_detail
+  topic: monitoring
+  priority: medium
+  description: Monitoring mentioned but not detailed
+  research_task_created: false
+- gap_id: server-architecture-005
+  gap_type: mentioned_without_detail
+  topic: testing
+  priority: medium
+  description: Testing mentioned but not detailed
+  research_task_created: false
+- gap_id: server-architecture-006
+  gap_type: missing_examples
+  topic: rate_limiting
+  priority: low
+  description: Rate Limiting explained but no concrete examples
+  research_task_created: false
+- gap_id: server-architecture-007
+  gap_type: missing_examples
+  topic: testing
+  priority: low
+  description: Testing explained but no concrete examples
+  research_task_created: false
+facts:
+- '**amp.yaml file** -- Declares what data to sync and how often'
+- '**Ampersand Server** -- Managed service that does the heavy lifting'
+- '**Webhook endpoints** -- Builders receive clean, standardized JSON data'
+- '**Embeddable UI components** -- End users configure integrations in the builder''s
+  app'
+- '`shared/common/` -- Domain models and types (no business logic)'

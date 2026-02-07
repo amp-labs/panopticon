@@ -1,0 +1,101 @@
+document: services/design-patterns.md
+last_analyzed: '2026-02-07T04:23:26.779022+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: design-patterns
+  framework: Fiber
+  confidence: HIGH
+coverage:
+  authentication:
+    density: not_covered
+    details: null
+    line_count: 0
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: mentioned
+    details: Complex initialization with multiple configuration options, dependency
+      resolution, and error handlin
+    line_count: 2
+  deployment:
+    density: brief
+    details: 'The API service can split routes into separate deployments:'
+    line_count: 1
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: brief
+    details: '## Testing Patterns'
+    line_count: 1
+mentions:
+  services:
+  - api
+  - messenger
+  - scribe
+  - temporal
+  providers: []
+  infrastructure:
+  - docker
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: infrastructure/database-architecture.md
+    context: backtick reference
+  - target: providers/provider-integration-patterns.md
+    context: backtick reference
+  incoming: []
+gaps:
+- gap_id: design-patterns-001
+  gap_type: incomplete_core_coverage
+  topic: authentication
+  priority: high
+  description: Authentication not documented
+  research_task_created: false
+- gap_id: design-patterns-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: design-patterns-003
+  gap_type: mentioned_without_detail
+  topic: error_handling
+  priority: medium
+  description: Error Handling mentioned but not detailed
+  research_task_created: false
+- gap_id: design-patterns-004
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: design-patterns-005
+  gap_type: mentioned_without_detail
+  topic: testing
+  priority: medium
+  description: Testing mentioned but not detailed
+  research_task_created: false
+- gap_id: design-patterns-006
+  gap_type: missing_examples
+  topic: error_handling
+  priority: low
+  description: Error Handling explained but no concrete examples
+  research_task_created: false
+facts:
+- Unit tests without external dependencies
+- Fast test execution using in-memory implementations
+- Flexible dependency injection via `context.Context`
+- Zero boilerplate for production code (auto environment detection)
+- No init-order dependencies

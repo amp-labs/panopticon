@@ -1,0 +1,77 @@
+document: services/metrics-service.md
+last_analyzed: '2026-02-07T04:23:26.787112+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: metrics-service
+  confidence: HIGH
+coverage:
+  authentication:
+    density: not_covered
+    details: null
+    line_count: 0
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: not_covered
+    details: null
+    line_count: 0
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  providers: []
+  infrastructure:
+  - postgres
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: observability-index.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "metrics-service.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference metrics-service.md"
+gaps:
+- gap_id: metrics-service-001
+  gap_type: incomplete_core_coverage
+  topic: authentication
+  priority: high
+  description: Authentication not documented
+  research_task_created: false
+- gap_id: metrics-service-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: metrics-service-003
+  gap_type: incomplete_core_coverage
+  topic: deployment
+  priority: high
+  description: Deployment not documented
+  research_task_created: false
+facts:
+- '**Database metric collection** -- Queries database for aggregate counts and statistics'
+- '**Prometheus exposure** -- Exposes collected metrics for Prometheus scraping'
+- '**Periodic execution** -- Runs on a configurable interval (default: 60 seconds)'
+- '`collectionErrors` -- Counter of failed collection attempts'
+- '`collectionDuration` -- Histogram of collection time, labeled by success/failure'

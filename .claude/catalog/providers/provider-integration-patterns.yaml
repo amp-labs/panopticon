@@ -1,0 +1,98 @@
+document: providers/provider-integration-patterns.md
+last_analyzed: '2026-02-07T04:23:26.764421+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  provider_name: provider-integration-patterns
+  framework: Fiber
+  confidence: HIGH
+coverage:
+  oauth:
+    density: detailed
+    details: '  source: server/shared/providers/, server/shared/catalog/, server/shared/oauth/,
+      AGENTS.md'
+    line_count: 22
+  rate_limiting:
+    density: mentioned
+    details: '    rateLimited,             // Rate limiting toggle'
+    line_count: 4
+  api_versions:
+    density: not_covered
+    details: null
+    line_count: 0
+  webhooks:
+    density: mentioned
+    details: '| `SubscribeConnector` | Real-time subscriptions | Register webhooks,
+      process events |'
+    line_count: 2
+  data_model:
+    density: not_covered
+    details: null
+    line_count: 0
+  quirks:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  - messenger
+  - scribe
+  - temporal
+  - token-manager
+  providers:
+  - hubspot
+  - notion
+  - salesforce
+  infrastructure:
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/token-manager.md
+    context: backtick reference
+  - target: providers/salesforce.md
+    context: backtick reference
+  - target: services/design-patterns.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "provider-integration-patterns.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference provider-integration-patterns.md"
+  - "provider-integration-patterns.md\u2192services/token-manager.md but services/token-manager.md\
+    \ doesn't reference provider-integration-patterns.md"
+  - "provider-integration-patterns.md\u2192providers/salesforce.md but providers/salesforce.md\
+    \ doesn't reference provider-integration-patterns.md"
+gaps:
+- gap_id: provider-integration-patterns-001
+  gap_type: mentioned_without_detail
+  topic: rate_limiting
+  priority: medium
+  description: Rate Limiting mentioned but not detailed
+  research_task_created: false
+- gap_id: provider-integration-patterns-002
+  gap_type: mentioned_without_detail
+  topic: webhooks
+  priority: medium
+  description: Webhooks mentioned but not detailed
+  research_task_created: false
+- gap_id: provider-integration-patterns-003
+  gap_type: missing_examples
+  topic: rate_limiting
+  priority: low
+  description: Rate Limiting explained but no concrete examples
+  research_task_created: false
+- gap_id: provider-integration-patterns-004
+  gap_type: missing_examples
+  topic: webhooks
+  priority: low
+  description: Webhooks explained but no concrete examples
+  research_task_created: false
+facts:
+- The server **automatically reads** the latest catalog from GitHub (no server redeploy
+  needed)
+- Catalog is **refreshed every 30 minutes** in production
+- Can be overridden via `PROVIDER_CATALOG_URL` environment variable
+- Falls back to the compiled-in catalog if the remote fetch fails
+- Provider name and display metadata

@@ -1,0 +1,103 @@
+document: services/api.md
+last_analyzed: '2026-02-07T04:23:26.770345+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: api
+  framework: GoFiber
+  confidence: HIGH
+coverage:
+  authentication:
+    density: detailed
+    details: 'The **api** service is the primary HTTP server handling customer requests,
+      authentication, resource '
+    line_count: 6
+  rate_limiting:
+    density: brief
+    details: '- **Redis** -- Token caching, rate limiting'
+    line_count: 1
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: mentioned
+    details: 'Routes are organized by subdomain, enabling independent scaling and
+      deployment:'
+    line_count: 4
+  scaling:
+    density: mentioned
+    details: 'Routes are organized by subdomain, enabling independent scaling and
+      deployment:'
+    line_count: 4
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  - scribe
+  - temporal
+  - token-manager
+  providers: []
+  infrastructure:
+  - kubernetes
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/design-patterns.md
+    context: backtick reference
+  - target: services/token-manager.md
+    context: backtick reference
+  - target: services/temporal.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "api.md\u2192services/design-patterns.md but services/design-patterns.md doesn't\
+    \ reference api.md"
+gaps:
+- gap_id: api-001
+  gap_type: mentioned_without_detail
+  topic: rate_limiting
+  priority: medium
+  description: Rate Limiting mentioned but not detailed
+  research_task_created: false
+- gap_id: api-002
+  gap_type: mentioned_without_detail
+  topic: deployment
+  priority: medium
+  description: Deployment mentioned but not detailed
+  research_task_created: false
+- gap_id: api-003
+  gap_type: mentioned_without_detail
+  topic: scaling
+  priority: medium
+  description: Scaling mentioned but not detailed
+  research_task_created: false
+- gap_id: api-004
+  gap_type: missing_examples
+  topic: deployment
+  priority: low
+  description: Deployment explained but no concrete examples
+  research_task_created: false
+- gap_id: api-005
+  gap_type: missing_examples
+  topic: scaling
+  priority: low
+  description: Scaling explained but no concrete examples
+  research_task_created: false
+facts:
+- '**HTTP request handling** -- REST API for all CRUD operations on Ampersand resources'
+- '**Authentication** -- Multi-modal auth (API keys, JWT, Clerk, Admin keys)'
+- '**Route segregation** -- Separate API, Proxy, Read, Write, and SignIn route groups'
+- '**Proxy service** -- Third-party API proxying (routed via `X-Amp-Request-Type:
+  proxy` header)'
+- '**Temporal orchestration** -- Triggers background workflows for read/write operations'

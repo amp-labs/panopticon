@@ -1,0 +1,83 @@
+document: services/temporal.md
+last_analyzed: '2026-02-07T04:23:26.795110+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: temporal
+  framework: Temporal
+  confidence: HIGH
+coverage:
+  authentication:
+    density: not_covered
+    details: null
+    line_count: 0
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: not_covered
+    details: null
+    line_count: 0
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  - messenger
+  - scribe
+  - temporal
+  providers: []
+  infrastructure:
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/api.md
+    context: backtick reference
+  - target: services/messenger.md
+    context: backtick reference
+  incoming: []
+gaps:
+- gap_id: temporal-001
+  gap_type: incomplete_core_coverage
+  topic: authentication
+  priority: high
+  description: Authentication not documented
+  research_task_created: false
+- gap_id: temporal-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: temporal-003
+  gap_type: incomplete_core_coverage
+  topic: deployment
+  priority: high
+  description: Deployment not documented
+  research_task_created: false
+facts:
+- '**Data reading** -- Executes scheduled and on-demand read operations from provider
+  APIs'
+- '**Bulk writing** -- Handles async bulk write operations with polling'
+- '**Bulk deleting** -- Handles async bulk delete operations with polling'
+- '**Bulk querying** -- Handles async bulk query operations with polling'
+- '**Subscription management** -- Creates, updates, deletes, and maintains real-time
+  subscriptions'

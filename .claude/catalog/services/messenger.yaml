@@ -1,0 +1,86 @@
+document: services/messenger.md
+last_analyzed: '2026-02-07T04:23:26.785145+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: messenger
+  framework: Temporal
+  confidence: HIGH
+coverage:
+  authentication:
+    density: not_covered
+    details: null
+    line_count: 0
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: not_covered
+    details: null
+    line_count: 0
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - messenger
+  - scribe
+  - temporal
+  providers:
+  - salesforce
+  infrastructure:
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/temporal.md
+    context: backtick reference
+  - target: services/scribe.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "messenger.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference messenger.md"
+gaps:
+- gap_id: messenger-001
+  gap_type: incomplete_core_coverage
+  topic: authentication
+  priority: high
+  description: Authentication not documented
+  research_task_created: false
+- gap_id: messenger-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: messenger-003
+  gap_type: incomplete_core_coverage
+  topic: deployment
+  priority: high
+  description: Deployment not documented
+  research_task_created: false
+facts:
+- '**Read result delivery** -- Receives completed read results, splits into chunks,
+  delivers via webhooks'
+- '**Write poll processing** -- Polls bulk write job status'
+- '**Subscription event processing** -- Receives and processes incoming provider webhooks'
+- '**Subscription event delivery** -- Delivers processed subscription events to builder
+  webhooks'
+- '**Notification delivery** -- Sends notifications via Svix'

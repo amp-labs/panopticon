@@ -1,0 +1,9 @@
+documents_analyzed:
+  customers: 0
+  infrastructure: 3
+  providers: 2
+  services: 10
+last_full_scan: '2026-02-07T04:23:26.822423+00:00'
+total_documents: 15
+total_entities: 37
+total_gaps: 60

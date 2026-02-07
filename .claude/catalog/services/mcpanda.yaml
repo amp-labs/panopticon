@@ -1,0 +1,91 @@
+document: services/mcpanda.md
+last_analyzed: '2026-02-07T04:23:26.781765+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: mcpanda
+  framework: Temporal
+coverage:
+  authentication:
+    density: detailed
+    details: '**Authentication:**'
+    line_count: 9
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: not_covered
+    details: null
+    line_count: 0
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: detailed
+    details: '### Webhook & Data Monitoring (4 tools) [source: README.md:69-73, CLAUDE.md:103-107]'
+    line_count: 9
+  testing:
+    density: detailed
+    details: '# McPanda - MCP Server for Ampersand Integration Testing'
+    line_count: 14
+mentions:
+  services:
+  - api
+  - builder-mcp
+  - mcpanda
+  - scribe
+  - temporal
+  providers: []
+  infrastructure:
+  - argocd
+  - gcp
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: mcpanda://index.md
+    context: backtick reference
+  - target: infrastructure/amp-ctx.md
+    context: backtick reference
+  - target: services/builder-mcp.md
+    context: backtick reference
+  - target: services/api.md
+    context: backtick reference
+  - target: services/temporal.md
+    context: backtick reference
+  - target: infrastructure-index.md
+    context: backtick reference
+  - target: README.md
+    context: backtick reference
+  - target: CLAUDE.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "mcpanda.md\u2192services/api.md but services/api.md doesn't reference mcpanda.md"
+  - "mcpanda.md\u2192services/temporal.md but services/temporal.md doesn't reference\
+    \ mcpanda.md"
+gaps:
+- gap_id: mcpanda-001
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: mcpanda-002
+  gap_type: incomplete_core_coverage
+  topic: deployment
+  priority: high
+  description: Deployment not documented
+  research_task_created: false
+facts:
+- '**After:** Single MCP tool calls that handle all complexity internally'
+- Used by AI agents (Claude, custom tools) to test integrations
+- 'Provides 77 production-ready tools across 12 categories [source: README.md:7]'
+- 'Integrates with amp-ctx for automatic environment detection [source: README.md:909-936,
+  CLAUDE.md:144-150]'
+- 'Supports localhost, dev, staging, prod, and PR environments [source: CLAUDE.md:146]'

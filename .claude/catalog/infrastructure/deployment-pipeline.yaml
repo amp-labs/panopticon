@@ -1,0 +1,71 @@
+document: infrastructure/deployment-pipeline.md
+last_analyzed: '2026-02-07T04:23:26.760530+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  framework: Temporal
+  confidence: HIGH
+coverage:
+  deployment:
+    density: detailed
+    details: '# Deployment Pipeline and CI/CD'
+    line_count: 6
+  scaling:
+    density: brief
+    details: 5. **Staging** (manual promotion from dev) -- Auto-scaling, mid-tier
+      DB
+    line_count: 1
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  security:
+    density: not_covered
+    details: null
+    line_count: 0
+  disaster_recovery:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - api
+  - builder-mcp
+  - messenger
+  - scribe
+  - temporal
+  - token-manager
+  providers: []
+  infrastructure:
+  - argocd
+  - docker
+  - gcp
+  - k8s
+  - kubernetes
+  - postgres
+  - temporal
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: infrastructure/database-architecture.md
+    context: backtick reference
+  - target: infrastructure/gcp-infrastructure.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "deployment-pipeline.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference deployment-pipeline.md"
+gaps:
+- gap_id: deployment-pipeline-001
+  gap_type: mentioned_without_detail
+  topic: scaling
+  priority: medium
+  description: Scaling mentioned but not detailed
+  research_task_created: false
+facts:
+- '`$SHORT_SHA` -- Git commit short hash'
+- '`${_IMAGE_TAG}` -- Build parameter (branch name or custom tag)'
+- '`flavor` -- Build flavor (dev/staging/prod)'
+- '`project` -- GCP project ID'
+- '`branch` -- Git branch name'

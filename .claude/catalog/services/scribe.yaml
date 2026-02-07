@@ -1,0 +1,83 @@
+document: services/scribe.md
+last_analyzed: '2026-02-07T04:23:26.788748+00:00'
+analyzed_by: knowledge-analyzer
+entities:
+  service_name: scribe
+  confidence: HIGH
+coverage:
+  authentication:
+    density: not_covered
+    details: null
+    line_count: 0
+  rate_limiting:
+    density: not_covered
+    details: null
+    line_count: 0
+  error_handling:
+    density: not_covered
+    details: null
+    line_count: 0
+  deployment:
+    density: not_covered
+    details: null
+    line_count: 0
+  scaling:
+    density: not_covered
+    details: null
+    line_count: 0
+  monitoring:
+    density: not_covered
+    details: null
+    line_count: 0
+  testing:
+    density: not_covered
+    details: null
+    line_count: 0
+mentions:
+  services:
+  - messenger
+  - metrics-service
+  - scribe
+  providers: []
+  infrastructure:
+  - postgres
+  customers: []
+cross_references:
+  outgoing:
+  - target: services/server-architecture.md
+    context: backtick reference
+  - target: services/messenger.md
+    context: backtick reference
+  - target: services/metrics-service.md
+    context: backtick reference
+  incoming: []
+  asymmetric:
+  - "scribe.md\u2192services/server-architecture.md but services/server-architecture.md\
+    \ doesn't reference scribe.md"
+  - "scribe.md\u2192services/metrics-service.md but services/metrics-service.md doesn't\
+    \ reference scribe.md"
+gaps:
+- gap_id: scribe-001
+  gap_type: incomplete_core_coverage
+  topic: authentication
+  priority: high
+  description: Authentication not documented
+  research_task_created: false
+- gap_id: scribe-002
+  gap_type: incomplete_core_coverage
+  topic: rate_limiting
+  priority: high
+  description: Rate Limiting not documented
+  research_task_created: false
+- gap_id: scribe-003
+  gap_type: incomplete_core_coverage
+  topic: deployment
+  priority: high
+  description: Deployment not documented
+  research_task_created: false
+facts:
+- '**Usage event ingestion** -- Persists usage/billing events to the database'
+- '**Operation change tracking** -- Persists operation status changes to the database'
+- '**Rate control** -- Controlled ingestion rate to prevent database overload'
+- UsageEmitted (billing events)
+- OperationChange (operation status)
