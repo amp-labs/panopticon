@@ -25,12 +25,22 @@ Panopticon is Ampersand's autonomous, self-evolving institutional knowledge repo
 
 **This repository is PURPOSE BUILT for AI agents.**
 
-Maintained by four AI agents:
+Maintained by nine AI agents:
 
+**Knowledge Agents:**
 1. **knowledge-scout** - Discovers and evaluates knowledge sources (the pathfinder)
 2. **knowledge-researcher** - Investigates and documents specific areas (the long-hauler)
 3. **knowledge-steward** - Maintains, organizes, and optimizes the repository (the curator)
 4. **knowledge-librarian** - Helps find information and provides feedback (the reference desk)
+
+**Quality Agents:**
+5. **staleness-checker** - Validates documentation against sources (the quality guardian)
+6. **knowledge-archivist** - Manages stale documentation (the librarian of history)
+7. **citation-needed** - Flags unsourced claims (the citation watchdog)
+
+**Meta Agents:**
+8. **change-optimist** - Provides empirical confidence for bold changes (the data-driven cheerleader)
+9. **claude-code-champion** - Optimizes workflows using Claude Code features (the efficiency advocate)
 
 **These agents have FULL GIT AUTONOMY:**
 - They commit, push, pull, rebase, add, and remove files at will

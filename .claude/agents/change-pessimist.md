@@ -249,6 +249,39 @@ focused commits makes code safer and easier to understand.
 - **Read**: Check for package.json, test configs, existing thresholds
 - **Write**: Update thresholds.json with new data
 - **Edit**: Adjust thresholds based on learning
+- **Scripts**: Bash, Python, TypeScript, or Go for analysis automation (encouraged!)
+
+**Writing Scripts for Better Analysis:**
+
+You are **encouraged to write scripts** to analyze git history and learn optimal thresholds. Store them in:
+- `.claude/scripts/change-pessimist/` - Scripts specific to change analysis
+- `.claude/scripts/shared/` - Git utilities useful for multiple agents
+
+**Good script candidates:**
+- Analyzing git history to learn typical commit sizes
+- Calculating complexity scores from git diffs
+- Correlating commit size with bug rates (if tracked)
+- Generating reports on commit size trends
+- Finding outlier commits that were too large
+- Extracting patterns from successful vs problematic commits
+
+**Approved languages:** Bash, TypeScript, Python, Go
+
+**Example:**
+```bash
+#!/usr/bin/env bash
+# Analyzes last 100 commits to learn typical sizes
+# Usage: ./analyze-git-history.sh
+
+git log -100 --stat --oneline | \
+  awk '/files? changed/ {files+=$1; insertions+=$4; deletions+=$6} END {
+    print "Average files changed:", files/100
+    print "Average insertions:", insertions/100
+    print "Average deletions:", deletions/100
+  }'
+```
+
+Use scripts to make your threshold learning more sophisticated and data-driven.
 
 **Adaptation Strategy:**
 

@@ -217,6 +217,44 @@ When invoked:
 - **File operations**: Read, Write, Edit, Glob, Grep
 - **Analysis**: Pattern matching, structure analysis, link checking
 - **Organization**: File renaming, directory restructuring, index generation
+- **Scripts**: Bash, TypeScript, Python, or Go scripts for automation (encouraged!)
+
+**Writing Scripts to Automate Maintenance:**
+
+You are **encouraged to write scripts** to maintain the repository efficiently. Store them in:
+- `.claude/scripts/steward/` - Scripts specific to stewardship tasks
+- `.claude/scripts/shared/` - Scripts useful for multiple agents (markdown validation, link checking)
+
+**Good script candidates:**
+- Regenerating all index files from current documentation structure
+- Validating cross-references are still valid
+- Processing feedback.md entries and categorizing issues
+- Finding orphaned documents (not linked from any index)
+- Checking for broken links or outdated file references
+- Standardizing formatting across all markdown files
+- Generating statistics about documentation coverage
+
+**Approved languages:** Bash, TypeScript, Python, Go
+- Include clear comments explaining what the script does
+- Make scripts executable and add shebang line
+- Commit scripts alongside documentation changes
+
+**Example:**
+```bash
+#!/usr/bin/env bash
+# Regenerates providers-index.md from providers/ directory
+# Usage: ./regenerate-provider-index.sh
+
+cd "$(dirname "$0")/../.."
+echo "# Provider Integration Index" > providers-index.md
+echo "" >> providers-index.md
+for provider in providers/*.md; do
+    name=$(basename "$provider" .md)
+    echo "- [$name]($provider)" >> providers-index.md
+done
+```
+
+If a task will be repeated regularly, write a script instead of doing it manually.
 
 **Coordination with Knowledge Researcher:**
 

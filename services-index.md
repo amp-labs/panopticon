@@ -1,8 +1,8 @@
 # Services Architecture Index
 
-This index documents Ampersand's 7 microservices architecture.
+This index documents Ampersand's 7 microservices architecture plus developer tooling.
 
-## Services
+## Core Services
 
 1. **api** - REST API server, authentication, routing (TBD)
 2. **temporal** - Workflow orchestration (TBD)
@@ -11,6 +11,10 @@ This index documents Ampersand's 7 microservices architecture.
 5. **token-manager** - OAuth token management (TBD)
 6. **metrics** - Metrics collection (TBD)
 7. **builder-mcp** - MCP server for builders (TBD)
+
+## Developer Tooling
+
+8. **mcpanda** ✅ - MCP server for integration testing (77 tools, production-ready) → `services/mcpanda.md`
 
 ## Cross-Cutting Concerns
 

@@ -124,8 +124,48 @@ You have access to:
 - **MCP servers**: mcpanda (operational), builder-mcp (product), potentially others
 - **Bash**: For running scripts, database queries (if authorized), git operations
 - **Web tools**: WebFetch, WebSearch (for provider documentation, public info)
+- **Scripts**: Bash, TypeScript, Python, or Go scripts for automation (encouraged!)
 
 Use these aggressively to gather accurate information.
+
+**Writing Scripts to Automate Research:**
+
+You are **encouraged to write scripts** to gather and process information efficiently. Store them in:
+- `.claude/scripts/researcher/` - Scripts specific to research tasks
+- `.claude/scripts/shared/` - Scripts useful for multiple agents
+
+**Good script candidates:**
+- Fetching provider data from multiple sources (APIs, docs, MCP tools)
+- Generating documentation templates with consistent structure
+- Scraping external documentation and formatting it
+- Querying databases and formatting results as markdown
+- Processing large datasets into markdown tables
+- Automating multi-step research workflows
+- Batch processing multiple providers/customers with similar patterns
+
+**Approved languages:** Bash, TypeScript, Python, Go
+- **Python** is excellent for web scraping, data processing, API interactions
+- **TypeScript** is good for complex data transforms and MCP tool orchestration
+- **Bash** is perfect for orchestrating multiple tools and git operations
+- **Go** is ideal for performance-critical data processing
+
+**Example:**
+```python
+#!/usr/bin/env python3
+# Fetches provider OAuth scopes from official documentation
+# Usage: ./fetch-oauth-scopes.py <provider-name>
+
+import sys
+import requests
+from bs4 import BeautifulSoup
+
+provider = sys.argv[1]
+# ... fetch and parse documentation ...
+print(f"## OAuth Scopes for {provider}")
+# ... output formatted markdown ...
+```
+
+If you're gathering data from multiple sources or doing repetitive processing, write a script. It saves time and ensures consistency across documentation.
 
 **Git Workflow (Mandatory):**
 

@@ -200,6 +200,39 @@ When invoked:
 - **MCP tools**: List tools, discover new servers, check capabilities
 - **Bash**: File system exploration, database queries, API checks
 - **Web tools**: Check for external documentation, provider docs
+- **Scripts**: Bash, TypeScript, Python, or Go for automation (encouraged!)
+
+**Writing Scripts for Source Discovery:**
+
+You are **encouraged to write scripts** to automate source discovery and evaluation. Store them in:
+- `.claude/scripts/scout/` - Scripts specific to scouting tasks
+- `.claude/scripts/shared/` - Scripts useful for multiple agents
+
+**Good script candidates:**
+- Scanning file system for new documentation files
+- Checking git repos for new README files or docs
+- Listing MCP tools and their capabilities
+- Evaluating source freshness (last modified dates)
+- Checking for broken links or outdated references
+- Comparing current sources with available resources
+
+**Approved languages:** Bash, TypeScript, Python, Go
+
+**Example:**
+```bash
+#!/usr/bin/env bash
+# Discovers new .md files in known repositories
+# Usage: ./discover-new-docs.sh
+
+for repo in ~/src/{server,mcpanda,argocd}; do
+  echo "Scanning $repo..."
+  find "$repo" -name "*.md" -mtime -30 | while read file; do
+    echo "  New: $file"
+  done
+done
+```
+
+Use scripts to make source discovery systematic and repeatable.
 
 **Coordination with Other Agents:**
 

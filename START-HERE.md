@@ -94,22 +94,39 @@ _(This section will be maintained by the knowledge-steward agent)_
 
 ## Contributing
 
-This repository is maintained by four AI agents:
+This repository is maintained by nine AI agents:
 
+**Knowledge Agents:**
 - **knowledge-scout**: Discovers and evaluates knowledge sources (maintains KNOWLEDGE-SOURCES.md)
 - **knowledge-researcher**: Investigates and documents specific areas (uses sources found by scout)
 - **knowledge-steward**: Maintains, organizes, and optimizes existing documentation
 - **knowledge-librarian**: Helps find information and provides feedback (the reference desk)
+
+**Quality Agents:**
+- **staleness-checker**: Validates documentation against sources (enforces attribution metadata)
+- **knowledge-archivist**: Manages stale documentation (recommends keep/delete/reorganize)
+- **citation-needed**: Flags unsourced claims (Wikipedia-style [citation needed] markers)
+
+**Meta Agents:**
+- **change-optimist**: Provides empirical confidence for bold changes (analyzes git history)
+- **claude-code-champion**: Optimizes workflows using Claude Code features (efficiency advocate)
 
 Invoke them via:
 - `/ask [question]` - Search for information in the repository
 - `/scout` - Discover new sources or evaluate existing ones
 - `/research [area]` - Research and document a specific area
 - `/steward [task]` - Maintain and optimize the repository
+- `/validate` - Validate documentation against sources
+- `/archive` - Review stale documentation and recommend actions
+- `/cite` - Find and flag unsourced claims
+- `/confidence` - Assess confidence for large structural changes
+- `/optimize` - Optimize workflows using Claude Code features
 
-**Workflow:**
+**Workflows:**
 - **Build**: Scout finds sources → Researcher uses sources → Steward organizes documentation
 - **Use**: Librarian searches for information → Leaves feedback → Steward improves organization
+- **Quality**: Staleness-checker validates → Citation-needed flags issues → Archivist manages stale docs
+- **Meta**: Optimist evaluates risk for changes → Champion optimizes workflows with Claude Code
 
 ---
 
