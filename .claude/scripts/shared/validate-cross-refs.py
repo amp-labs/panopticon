@@ -40,7 +40,11 @@ def find_markdown_files(directory):
         dirs[:] = [d for d in dirs if d not in ['archive', '.git']]
         for file in files:
             if file.endswith('.md'):
-                yield Path(root) / file
+                file_path = Path(root) / file
+                # Skip KNOWLEDGE-SOURCES.md (catalog of external sources, not internal cross-refs)
+                if file_path.name == 'KNOWLEDGE-SOURCES.md':
+                    continue
+                yield file_path
 
 
 def extract_backtick_refs(content):
