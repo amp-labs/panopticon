@@ -91,6 +91,7 @@ panopticon/
 ## Recent Updates
 
 **2026-02-06:**
+- **Salesforce provider documented** - Comprehensive documentation of CRM provider with rate limiting, CDC filtering, Apex triggers (providers/salesforce.md)
 - **Placeholder indexes created** - Added team-index.md, security-index.md, observability-index.md to fix broken references
 - **Feedback archiving automated** - Script and infrastructure for managing feedback.md growth
 - **Self-aware-claude agent added** - Meta-cognitive agent for identity recognition and adaptive evolution
