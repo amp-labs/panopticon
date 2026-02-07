@@ -91,12 +91,135 @@ This document catalogs the primary sources of truth for researching Ampersand kn
    - Kubernetes deployment configurations
    - Environment-specific manifests (dev, staging, prod, preview)
    - GitOps source of truth
+   - 227MB, 573 commits in last 30 days (highly active)
    - **Get location:** Use `locations` tool from McPanda
 
-4. **panopticon** (this repository)
-   - Institutional knowledge repository
-   - Self-documenting and self-evolving
-   - **Location:** You're already here!
+4. **cloud-infra** (Infrastructure as Code)
+   - Terraform configurations for GCP infrastructure
+   - Manages three environments: dev, staging, prod
+   - Infrastructure workspace definitions
+   - Terraform Cloud integration
+   - Key files:
+     - `README.md` - Environment setup, workspace management, change workflow
+     - `CLAUDE.md` - Agent-specific infrastructure guidance
+   - **Quality:** 🟢 High - Active infrastructure management, well-documented
+   - **Size:** Infrastructure source of truth for GCP projects
+   - **Get location:** ~/src/cloud-infra (or search for terraform configs)
+
+5. **cloud-functions** (Serverless Functions)
+   - Google Cloud Function implementations
+   - Multiple function categories:
+     - `clickhouse_usage_events/` - Usage event processing
+     - `webhookgateway/` - Webhook routing and handling
+     - `archive-db/` - Database archival jobs
+     - `pr-closed-handler/` - GitHub PR event handling
+     - `dead-letter-receiver/` - Failed message handling
+     - `dead-letter-processor/` - Dead letter queue processing
+   - Each function has own README and CLAUDE.md
+   - **Quality:** 🟢 High - Production functions with individual documentation
+   - **Get location:** ~/src/cloud-functions
+
+6. **amp-yaml-validator** (Configuration Validation)
+   - Library for validating amp.yaml integration manifests
+   - Comprehensive validation: schema, business logic, provider constraints
+   - Key file: `ARCHITECTURE.md` - Design principles and validator structure
+   - Modular validator organization by concern
+   - **Quality:** 🟢 High - Well-architected, comprehensive validation
+   - **Usage:** Research how integrations are validated
+
+7. **amp-common** (Shared Go Libraries)
+   - Shared utilities used across Ampersand projects
+   - 100% test coverage
+   - Packages for: actors, object pooling, concurrency, environment parsing, telemetry
+   - Private GitHub repository (requires SSH setup)
+   - **Quality:** 🟡 Medium - Well-tested but not Ampersand-specific
+   - **28MB, 25 commits/30d** - Actively maintained
+   - **Get location:** Use `locations` tool or private repo access
+
+8. **connectors** (Provider Integrations)
+   - Provider integration implementations and libraries
+   - 240MB, 101 commits in last 30 days (very active)
+   - Multiple provider-specific implementations
+   - 7 markdown documentation files
+   - **Quality:** 🟢 High - Active provider development
+   - **Get location:** ~/src/connectors
+
+9. **amp-ctx** (Environment Management)
+   - CLI tool for switching between Ampersand contexts
+   - Manages different development environments
+   - 24MB, minimal activity but core utility
+   - **Quality:** 🟡 Medium - Lightweight but essential for development
+   - **Get location:** ~/src/amp-ctx
+
+10. **openapi** (API Specifications)
+    - OpenAPI definitions for Ampersand APIs
+    - 78MB, 12 commits/30d
+    - Serves as reference for public API
+    - Used to generate reference documentation in docs/ repository
+    - **Quality:** 🟡 Medium - API spec source but docs are primary
+    - **Get location:** ~/src/openapi
+
+11. **samples** (Example Code)
+    - Sample implementations using Ampersand platform
+    - 1.9MB, 6 commits/30d
+    - Demonstrates integration patterns and usage
+    - **Quality:** 🟡 Medium - Good for learning patterns but limited scope
+    - **Get location:** ~/src/samples
+
+12. **panopticon** (this repository)
+    - Institutional knowledge repository
+    - Self-documenting and self-evolving
+    - **Location:** You're already here!
+
+### Repositories Evaluated but Not Recommended
+
+The following repositories were discovered and evaluated but are not recommended as primary knowledge sources:
+
+**🔴 Deprecated/Low-Value Repositories:**
+
+1. **temporal** - Upstream fork of Temporal workflow engine
+   - Not maintained by Ampersand team
+   - Use official Temporal documentation instead
+   - **Reason:** Upstream project, not Ampersand-specific
+
+2. **sdk-go** - Upstream Temporal Go SDK
+   - Not maintained by Ampersand team
+   - Use official Temporal SDK documentation
+   - **Reason:** Upstream project, not Ampersand-specific
+
+3. **server2**, **server3** - Additional server versions
+   - Unclear versioning scheme
+   - Potentially deprecated alternatives to main server repo
+   - **Status:** Needs clarification on purpose and maintenance status
+   - **Reason:** Redundant with primary server repository
+
+4. **cli** - Ampersand CLI (legacy)
+   - Very low recent activity (1 commit/30d on 2026-01-10)
+   - Likely superseded by amp-ctx
+   - **Reason:** Low maintenance, possible deprecation
+
+5. **client** - Client/console management
+   - 483MB but only 17 commits/30d
+   - Purpose unclear from repository structure
+   - **Reason:** Large codebase with minimal recent development
+
+6. **mcp** vs **mcp-protocol** - MCP implementations
+   - Two similar repositories exist (4.3MB vs 2.6MB)
+   - Unclear which is canonical
+   - Both have recent activity
+   - **Status:** Needs investigation to determine canonical version
+   - **Reason:** Possible duplication, need clarity on purpose
+
+**🟢 External Upstream Repositories (For Reference Only):**
+
+These are legitimate upstream projects useful for reference but not Ampersand-specific:
+- **react** - React framework
+- **fiber** - Go HTTP framework
+- **cal.com** - Calendar integration reference
+- **Flowise** - Workflow engine reference
+- Others in ~/src for tool evaluation/testing
+
+These are for reference and learning only. Ampersand-specific source code is in the primary repositories above.
 
 ### MCP Servers (Live Tools)
 
@@ -222,6 +345,36 @@ Located in root of mcpanda repository (use `locations` tool to find repo path):
 
 **Access:** Via mcpanda monitoring tools
 
+## Repository Discovery & Evaluation
+
+### All Repositories Discovered in ~/src (2026-02-06)
+
+Total: 60+ repositories and projects discovered
+
+**Key Statistics:**
+- Largest repositories: server (2.3GB), client (483MB), mcpanda (675MB)
+- Most active: argocd (573 commits/30d), server (611 commits/30d), connectors (101 commits/30d)
+- Fully documented: server (AGENTS.md, docs/), mcpanda (extensive .md files), argocd (README)
+- Infrastructure: cloud-infra (Terraform), cloud-functions (GCP functions), argocd (K8s)
+
+### Evaluation Criteria Used
+
+Each repository was assessed on:
+- **Activity Level** - Commits in last 30 days (0-600+)
+- **Size** - Total disk space (1MB - 2.3GB)
+- **Documentation** - README, architecture docs, design docs
+- **Maintenance** - Recent changes, code quality indicators
+- **Relevance** - Ampersand-specific vs upstream projects
+- **Dependencies** - How critical to understanding Ampersand
+
+### Quality Ratings Explained
+
+- 🟢 **High Quality** - Well-maintained, well-documented, active development, Ampersand-specific
+- 🟡 **Medium Quality** - Good documentation, some maintenance, limited scope or activity
+- 🔴 **Low Quality** - Minimal documentation, stale, upstream, unclear purpose
+
+---
+
 ## Research Workflow Recommendations
 
 ### For Provider Research:
@@ -260,8 +413,39 @@ Located in root of mcpanda repository (use `locations` tool to find repo path):
 2. Check if provider requires special handling in `shared/providers/`
 3. Review server code for provider-specific OAuth flows
 4. Look for provider field mappings in integration tests
-5. Search Slab for provider-specific runbooks or gotchas
-6. Reference provider's official API documentation (WebFetch)
+5. Search connectors repository for provider-specific implementations
+6. Search Slab for provider-specific runbooks or gotchas
+7. Reference provider's official API documentation (WebFetch)
+
+### For Infrastructure & Operations Research:
+1. Start with cloud-infra for GCP infrastructure setup and environments
+2. Review cloud-functions for serverless patterns and implementations
+3. Check argocd for K8s deployment configurations
+4. Use mcpanda GCP tools for live infrastructure state
+5. Review Cloud Build history and logs for CI/CD patterns
+6. Check server repo's Makefile for build/deployment targets
+
+### Research Priority Recommendations
+
+**Tier 1 - Always Start Here (Most Valuable):**
+- server - Core architecture, business logic, all APIs
+- mcpanda - Tool reference and testing automation
+- KNOWLEDGE-SOURCES.md - This document, for source discovery
+
+**Tier 2 - Use When Topic-Specific (High Value):**
+- argocd - For infrastructure/deployment questions
+- cloud-infra - For GCP architecture questions
+- connectors - For provider integration patterns
+- amp-yaml-validator - For configuration validation understanding
+
+**Tier 3 - Useful for Detailed Research (Medium Value):**
+- amp-common - For shared library patterns
+- amp-ctx - For environment management
+- cloud-functions - For serverless/event-driven patterns
+- samples - For usage examples
+
+**Avoid Unless Specific Need:**
+- temporal, sdk-go, react, etc. - Use official upstream documentation instead
 
 ### For Workflow/Operations Research:
 1. Review Temporal workflow definitions in `shared/temporal/`
