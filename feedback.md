@@ -59,10 +59,12 @@ This section tracks suggestions that appear multiple times across feedback entri
   - Status: Not implemented (analyzer may need enhancement)
 
 ### Low Priority / Nice to Have
-- Template enforcement at creation time
-- Research task lifecycle tracking
-- Categorized broken ref reports
-- Fix suggestions in validators
+- **Template enforcement at creation time** - Researcher uses proper YAML frontmatter from start
+- **Research task lifecycle tracking** - Track created date, last touched, dependencies
+- **Categorized broken ref reports** - Group by severity (critical/medium/low)
+  - Mentioned in: 2026-02-07 00:45
+- **Fix suggestions in validators** - Suggest likely fixes when file almost exists
+  - Mentioned in: 2026-02-07 00:45
 
 **Review frequency:** Groomed during each maintenance round
 

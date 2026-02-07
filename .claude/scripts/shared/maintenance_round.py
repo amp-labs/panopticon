@@ -126,6 +126,50 @@ def housekeeping():
     return True
 
 
+def groom_feedback():
+    """Review and groom feedback.md recurring suggestions."""
+    print(f"\n{CYAN}🗂️  Feedback Grooming...{NC}")
+
+    feedback = Path("feedback.md")
+    if not feedback.exists():
+        print(f"{YELLOW}    ⚠️  No feedback.md found{NC}")
+        return True
+
+    print(f"{BLUE}  → Review Recurring Suggestions Tracker:{NC}")
+    print(f"{BLUE}    • Mark implemented suggestions as ✅{NC}")
+    print(f"{BLUE}    • Promote recurring themes (1x → 3x = high priority){NC}")
+    print(f"{BLUE}    • Add new suggestions from latest entries{NC}")
+    print(f"{BLUE}    • Archive closed entries >30 days old{NC}")
+
+    # Check if there are old entries to archive
+    content = feedback.read_text()
+    lines = content.split('\n')
+
+    now = datetime.now()
+    old_entries = []
+
+    for line in lines:
+        if line.startswith('## [2'):  # Entry header
+            try:
+                # Extract date from header
+                date_str = line.split('[')[1].split(']')[0].split(' ')[0]
+                entry_date = datetime.strptime(date_str, '%Y-%m-%d')
+                age_days = (now - entry_date).days
+
+                if age_days > 30 and '**Status:** Closed' in content:
+                    old_entries.append((date_str, age_days))
+            except:
+                pass
+
+    if old_entries:
+        print(f"{YELLOW}    ⚠️  {len(old_entries)} entries >30 days old (ready for archival){NC}")
+        print(f"{BLUE}       Run: .claude/scripts/shared/archive-feedback.sh{NC}")
+    else:
+        print(f"{GREEN}    ✅ No old entries needing archival{NC}")
+
+    return True
+
+
 def small_improvements():
     """Look for quick improvement opportunities."""
     print(f"\n{CYAN}🔧 Small Improvements...{NC}")
@@ -134,11 +178,17 @@ def small_improvements():
 
 
 def leave_feedback():
-    """Remind to leave feedback."""
+    """Remind to leave feedback and groom tracker."""
     print(f"\n{CYAN}📝 Maintenance Round Feedback{NC}")
     print("=" * 60)
-    print(f"{YELLOW}⚠️  CRITICAL: Add feedback entry to feedback.md{NC}\n")
-    print("Template:")
+    print(f"{YELLOW}⚠️  CRITICAL: Complete feedback cycle{NC}\n")
+    print(f"{BLUE}1. Add feedback entry to feedback.md{NC}")
+    print("   - What you looked for, what worked, what would help")
+    print(f"\n{BLUE}2. Update Recurring Suggestions Tracker{NC}")
+    print("   - Mark new implementations as ✅")
+    print("   - Add new recurring suggestions")
+    print("   - Promote themes mentioned 3+ times to High Priority")
+    print("\nTemplate:")
     print(f"{BLUE}### [YYYY-MM-DD] Maintenance Round{NC}")
     print("- **Looked for:** Quality issues, stale staging items, improvement opportunities")
     print("- **Worked well:** [What went smoothly]")
@@ -177,11 +227,16 @@ def main():
         if not housekeeping():
             success = False
 
-    # 3. Small improvements
+    # 3. Feedback grooming
+    if not args.quality_only:
+        if not groom_feedback():
+            success = False
+
+    # 4. Small improvements
     if not args.quality_only:
         small_improvements()
 
-    # 4. Feedback reminder
+    # 5. Feedback reminder
     if not args.quality_only and not args.housekeeping_only:
         leave_feedback()
 
