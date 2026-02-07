@@ -29,10 +29,19 @@ This index catalogs all 80+ provider integrations supported by Ampersand.
 | **Subscribe** | Provider --> Cloud Function --> Pub/Sub --> Messenger --> Webhook |
 | **Proxy** | Builder --> API --> Authenticated HTTP --> Provider API --> Response |
 
+## Under Exploration
+
+Active provider evaluations pending decision:
+
+- **Notion** ⚠️ - Workspace/database API being evaluated as CRM alternative (decision by 2026-02-20) → `providers/notion.md`
+  - Status: exploration
+  - Recommendation: No-Go (not purpose-built for CRM)
+  - Awaiting team decision
+
 ## Provider Categories
 
 ### CRM Providers
-- **Salesforce** - Enterprise CRM with adaptive rate limiting, CDC filtering, Apex trigger support --> `providers/salesforce.md`
+- **Salesforce** ✅ - Enterprise CRM with adaptive rate limiting, CDC filtering, Apex trigger support → `providers/salesforce.md`
 - HubSpot (TBD)
 - _...more to be documented..._
 

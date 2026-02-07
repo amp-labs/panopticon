@@ -52,6 +52,33 @@ Don't expect the same structure between sessions. The structure serves the agent
 **Leaves:** Feedback in `feedback.md` after searches
 **Invoked via:** `/ask [question]` command
 
+### knowledge-explorer
+**Role:** Decision analyst - conducts structured research for speculative decisions
+**Purpose:** Help decide "Should we build/integrate/adopt X?"
+**Invoked via:** `/explore [topic]` command
+**Output:** Exploration documents with comparison matrices, recommendations, and risk analysis
+
+The knowledge-explorer specializes in decision-making research (not implementation documentation):
+- Comparative analysis with weighted scoring
+- Clear recommendations (Go/No-Go/Needs More Info)
+- Risk and unknown identification
+- Time-bound research (14-day default deadline)
+
+**When to use:**
+- Evaluating new provider integrations (Notion, Airtable, Linear)
+- Researching dependencies (Redis, alternative databases)
+- Architecture decisions (service splits, API redesigns)
+- Vendor evaluations (monitoring tools, infrastructure)
+
+**Exploration lifecycle:**
+1. **Active:** Lives in normal content area with `status: "exploration"`
+2. **Decision made:** Updated to `status: "accepted"` or `status: "rejected"`
+3. **Archived:** Moved to `archive/accepted-proposals/` or `archive/rejected-proposals/`
+
+**Key distinction:**
+- **Explorer:** "Should we use X?" (decision focus, temporary)
+- **Researcher:** "How does X work?" (documentation focus, permanent)
+
 ## The Quality Agents (Validation & Maintenance)
 
 ### staleness-checker
@@ -216,6 +243,29 @@ The claude-code-champion advocates for:
 ### When You Discover New Information
 
 If you learn something about Ampersand that isn't documented or is documented incorrectly, note it! The knowledge-researcher agent can investigate and document it properly.
+
+### When Evaluating "Should We Build/Adopt X?" (Exploration Workflow)
+
+**Developers can responsibly invoke exploration research** for novel providers, dependencies, or architectural decisions:
+
+1. **Invoke explorer:** `/explore [topic]` (e.g., `/explore notion-provider`)
+2. **Explorer creates comparison doc** with `status: "exploration"` in frontmatter
+   - Lives in normal content area (providers/, services/, etc.)
+   - Indexed under "Under Exploration" section
+   - Decision deadline set (14 days default)
+3. **Decision is made** within deadline:
+   - ✅ **Accepted:** Researcher creates production docs → Original exploration archived to `archive/accepted-proposals/`
+   - ❌ **Rejected:** Add "Why We Said No" section → Move to `archive/rejected-proposals/`
+4. **No pollution:** Explorations have mandatory lifecycle → decision → archive
+
+**Key principle:** Speculative research doesn't pollute the repository if it has a lifecycle and an endpoint.
+
+**Rejected proposals are valuable:**
+- "Why we didn't choose X" prevents re-investigation of dead ends
+- Decision rationale preserved for future reference
+- Shows what was considered and why it didn't work
+
+**See:** `INGESTION-PIPELINE.md` section "Exploration & Speculative Research" for full details
 
 ## Key Files
 
