@@ -9,13 +9,16 @@ validation_metadata:
     last_checked: "2026-02-06 21:57"
     checked_by: "knowledge-explorer"
     status: "accurate"
-  status: "exploration"
+  status: "rejected"
   exploration:
     started_date: "2026-02-06"
     decision_deadline: "2026-02-20"
+    decision_date: "2026-02-06"
     decision_owner: "engineering-team"
     reason: "Evaluating Notion as potential CRM alternative to Salesforce"
     research_type: "provider_evaluation"
+    decision: "rejected"
+    decision_rationale: "Not purpose-built for CRM, limited webhooks, high migration risk"
 ---
 
 # Notion Provider Evaluation
