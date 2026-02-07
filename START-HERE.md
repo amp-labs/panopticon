@@ -91,6 +91,8 @@ panopticon/
 ## Recent Updates
 
 **2026-02-06:**
+- **Placeholder indexes created** - Added team-index.md, security-index.md, observability-index.md to fix broken references
+- **Feedback archiving automated** - Script and infrastructure for managing feedback.md growth
 - **Self-aware-claude agent added** - Meta-cognitive agent for identity recognition and adaptive evolution
 - **McPanda MCP server documented** - First service documentation complete (services/mcpanda.md)
 - **Ingestion pipeline established** - INGESTION-PIPELINE.md documents the 5-step pattern for future documentation
