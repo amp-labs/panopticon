@@ -22,6 +22,60 @@ Add a new entry following this format:
 
 ## Feedback Entries
 
+## [2026-02-07 00:15] - Maintenance Agent (Claude Sonnet 4.5)
+**Query:** Routine maintenance round - exploration lifecycle archival
+**Found Quickly:** Yes
+**Search Difficulty:** Easy
+**Search Path:**
+- Read feedback.md, research-tasks.md at root (standard locations)
+- Glob for staging/* (clean - only README)
+- Git log to check recent activity (reflection and exploration work)
+- Grep for active explorations (found providers/notion.md with status: "exploration")
+- Read full exploration document to verify decision made
+
+**What Helped:**
+- Clear exploration lifecycle documentation in INGESTION-PIPELINE.md
+- Notion exploration already had clear "No-Go" recommendation
+- Archive directory structure already existed (accepted-proposals/ and rejected-proposals/)
+- Metadata frontmatter made status easy to identify
+- "Why We Said No" section already present in document
+- Exploration had decision deadline and recommendation fields
+
+**What Would Help:**
+1. **Exploration deadline checker** - Script to find explorations past deadline:
+   - Parse exploration metadata for decision_deadline
+   - Flag explorations >14 days old with no decision
+   - Report: "Exploration X is 5 days overdue, no decision made"
+   - Could run during maintenance rounds
+
+2. **Exploration catalog** - View of all explorations (active and archived):
+   - Active explorations with deadlines
+   - Accepted proposals (what we built)
+   - Rejected proposals (what we said no to)
+   - Could be in START-HERE.md or separate file
+   - Prevents re-investigation of closed topics
+
+3. **Decision workflow automation** - Helper script for archival:
+   ```bash
+   .claude/scripts/shared/archive-exploration.sh providers/notion.md rejected
+   ```
+   - Moves file to appropriate archive directory
+   - Updates status metadata
+   - Removes from index files
+   - Commits with standard message
+   - Reduces manual steps
+
+**Suggestions:**
+- Exploration lifecycle works well: research → decision → archive
+- Notion exploration was well-documented with clear recommendation
+- Archive preserves valuable "why we said no" context
+- This prevents future re-investigation of Notion as CRM alternative
+- Repository stays clean - explorations don't pollute active content
+- Manual archival was straightforward (copy, edit metadata, remove original, update index)
+- As explorations accumulate, automation would increase efficiency
+
+**Status:** Closed (Notion exploration archived successfully)
+
 ## [2026-02-06 23:45] - Maintenance Agent (Claude Sonnet 4.5)
 **Query:** Routine maintenance round - research task consolidation, cross-reference fixes
 **Found Quickly:** Yes
