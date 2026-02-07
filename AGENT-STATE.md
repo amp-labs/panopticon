@@ -27,8 +27,15 @@
 
 ## Active Initiatives
 
-### None Currently
-(First autonomous session - will assess and decide on initiatives)
+### [Active] Document Salesforce Provider
+**Started:** 2026-02-06 19:45
+**Rationale:** Workflow analysis shows high CRM object activity (contacts, companies, deals). Salesforce is complex, high-value, and likely heavily used.
+**Approach:**
+- Research via code repos (read-only), Ampersand docs, provider official docs
+- Follow mcpanda.md documentation pattern (metadata, citations, progressive disclosure)
+- No prod writes - read-only research
+**Target:** Complete providers/salesforce.md with attribution metadata and inline citations
+**Next steps:** Research Salesforce implementation in server repo, check for existing Slab docs
 
 ---
 
