@@ -203,9 +203,63 @@ archive/
 - Scout evaluates and prunes stale sources
 - Researcher uses sources for investigation
 
+## Staging System
+
+**Purpose:** Handle information chaos with quick capture and thoughtful organization
+
+**Philosophy:** "Quick capture now, thoughtful organization later"
+
+**Directory:** `staging/`
+
+**What it solves:**
+- Prevents blocking on "where does this go?" during information dumps
+- Allows responsive capture without sacrificing thoughtful organization
+- Keeps main directories clean while processing messy inputs
+- Pressure valve for chaos
+
+**Workflow:**
+1. **Capture Phase** - Dump information into `staging/` with descriptive filename
+   - Use date prefix: `YYYY-MM-DD-topic-description.md`
+   - Don't worry about perfect structure yet
+   - Just capture the information before it's lost
+
+2. **Processing Phase** (during maintenance rounds)
+   - Review `staging/` directory
+   - Process items >3 days old (prioritize by age)
+   - Expand, structure, add metadata
+   - Determine permanent location
+   - Move to proper home and update indexes
+   - Delete staging file
+
+3. **Maintenance Rules**
+   - Maximum staging time: 7 days
+   - Process staging/ during every maintenance round
+   - >10 files in staging = red flag (needs processing session)
+   - Files >7 days old = red flag (prioritize)
+
+**When to use staging:**
+- Unclear permanent location
+- Information dump needing untangling
+- Needs more work before final placement
+- Time pressure (capture now, organize later)
+
+**When to skip staging:**
+- Obvious permanent home (use direct placement)
+- Already well-structured (follow ingestion pipeline)
+- Quick addition to existing doc (just edit it)
+
+**Documentation:** See `staging/README.md`
+
 ## Ingestion Pipeline
 
 **Purpose:** Standardize how new knowledge enters the repository
+
+**Two paths:**
+1. **Direct Path** (clear, well-structured information)
+   - Discovery → Creation → Indexing → Validation → Maintenance
+
+2. **Staging Path** (unclear, messy, or partial information)
+   - Capture to staging/ → Process later → then follow direct path
 
 **Steps:**
 1. Discovery (identify information to document)
