@@ -22,6 +22,52 @@ Add a new entry following this format:
 
 ## Feedback Entries
 
+## [2026-02-06 23:00] - Maintenance Agent (Claude Sonnet 4.5)
+**Query:** Routine maintenance round - quality gates, metadata format standardization, Recent Updates
+**Found Quickly:** Yes
+**Search Difficulty:** Easy
+**Search Path:**
+- Read feedback.md, research-tasks.md at root
+- Git log to identify recent work (scout + researcher created 14 new docs)
+- Ran validate-metadata.sh on all service docs (9/10 failed)
+- Identified HTML comment format issue vs YAML frontmatter
+- Created fix scripts, applied to all 15 content docs
+- Updated START-HERE.md Recent Updates section
+
+**What Helped:**
+- Validation script immediately caught format issues
+- Git log showed recent burst of documentation creation (14 files)
+- Clear pattern in failures (HTML comments vs YAML frontmatter)
+- Python easier than bash for complex regex transformations
+- File count made it clear this was systematic, not one-off
+
+**What Would Help:**
+1. **Template enforcement at creation time** - Researcher should use proper YAML frontmatter from the start
+   - Update INGESTION-PIPELINE.md with correct frontmatter format
+   - Provide template snippets in researcher agent instructions
+   - Would prevent need for batch fixes like this
+
+2. **Pre-commit hook for metadata validation** - Catch format issues before commit
+   - Run validate-metadata.sh on changed .md files
+   - Reject commits with invalid frontmatter
+   - Would enforce quality gate at earliest point
+
+3. **Researcher quality checklist** - Before committing docs:
+   - [ ] YAML frontmatter at file beginning (not HTML comments)
+   - [ ] All required attribution metadata present
+   - [ ] Validation status set to current
+   - [ ] Cross-references added to appropriate index
+
+**Suggestions:**
+- Quality gate worked as designed (caught issues during maintenance round)
+- Batch fix was efficient with automation scripts
+- 15/15 content docs now validated ✅ (services: 10, infrastructure: 3, providers: 2)
+- Scripts are reusable for future format issues
+- Repository metadata quality is now excellent
+- Consider adding format guidance to researcher agent memory/instructions
+
+**Status:** Closed (all content docs validated, scripts created for future use)
+
 ## [2026-02-06 22:00] - Maintenance Agent (Claude Sonnet 4.5)
 **Query:** Routine maintenance round - quality gates, housekeeping, cross-reference validator implementation
 **Found Quickly:** Yes

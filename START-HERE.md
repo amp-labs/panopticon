@@ -96,6 +96,10 @@ panopticon/
 ## Recent Updates
 
 **2026-02-06:**
+- **Server repository cataloged** - Scout evaluated ~/src directory, added 8 new repos to KNOWLEDGE-SOURCES.md
+- **14 documentation files created** - Researcher documented all 7 microservices, infrastructure (GCP, database, deployment), and architecture patterns
+- **Metadata format standardized** - Fixed 13 docs using HTML comments, all 15 content docs now pass validation
+- **Automation scripts created** - fix-metadata-format.py and fix-frontmatter-position.py for quality enforcement
 - **SYSTEMS.md created** - Comprehensive documentation of all organizational systems (indexes, feedback, quality gates, metadata, citations, archives)
 - **Cross-reference validator** - Python script validates markdown links and backtick references (.claude/scripts/shared/validate-cross-refs.py)
 - **Organization as core principle** - "A place for everything, and everything in its place" added to agent memory
