@@ -20,6 +20,54 @@ Add a new entry following this format:
 
 **Note:** The knowledge-librarian agent automatically leaves feedback after every query. Other agents and humans are also welcome to leave feedback when they search for information.
 
+## Recurring Suggestions Tracker
+
+This section tracks suggestions that appear multiple times across feedback entries and their implementation status.
+
+### Implemented ✅
+- **Cross-reference validator** (2026-02-06) - `.claude/scripts/shared/validate-cross-refs.py`
+- **Metadata validator** (2026-02-06) - `.claude/scripts/shared/validate-metadata.sh`
+- **Exploration deadline checker** (2026-02-06) - `.claude/scripts/shared/check-exploration-deadlines.sh`
+- **Maintenance automation** (2026-02-06) - `.claude/scripts/shared/maintenance_round.py`
+- **Feedback archival script** (2026-02-06) - `.claude/scripts/shared/archive-feedback.sh`
+
+### High Priority (mentioned 3+ times)
+- **Quality gate dashboard** - Single command showing repository health
+  - Mentioned in: 2026-02-06 19:57, 2026-02-06 21:30, 2026-02-06 18:30
+  - Status: Not implemented
+  - Could be added to maintenance_round.py or separate script
+
+- **Automated maintenance checklist** - Script that runs all quality gates
+  - Mentioned in: 2026-02-06 19:57, 2026-02-06 21:30, 2026-02-06 18:30
+  - Status: Partially implemented (maintenance_round.py exists but could be enhanced)
+
+### Medium Priority (mentioned 1-2 times)
+- **Validator configuration file** - YAML config instead of hardcoded skip lists
+  - Mentioned in: 2026-02-07 00:45
+  - Status: Not implemented
+
+- **Pre-commit hooks** - Validation before commits
+  - Mentioned in: 2026-02-06 23:00
+  - Status: Not implemented
+
+- **Exploration catalog** - Dashboard of active/archived explorations
+  - Mentioned in: 2026-02-07 00:15
+  - Status: Not implemented
+
+- **Pattern detection in knowledge-analyzer** - Detect cross-cutting concerns
+  - Mentioned in: 2026-02-06 23:45
+  - Status: Not implemented (analyzer may need enhancement)
+
+### Low Priority / Nice to Have
+- Template enforcement at creation time
+- Research task lifecycle tracking
+- Categorized broken ref reports
+- Fix suggestions in validators
+
+**Review frequency:** Groomed during each maintenance round
+
+---
+
 ## Feedback Entries
 
 ## [2026-02-07 00:45] - Maintenance Agent (Claude Sonnet 4.5)
