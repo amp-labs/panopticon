@@ -11,7 +11,7 @@ This index catalogs all 80+ provider integrations supported by Ampersand.
 ## Provider Categories
 
 ### CRM Providers
-- Salesforce (TBD)
+- **Salesforce** ✅ - Enterprise CRM with adaptive rate limiting, CDC filtering, Apex trigger support → `providers/salesforce.md`
 - HubSpot (TBD)
 - _...more to be documented..._
 
