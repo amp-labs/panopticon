@@ -19,6 +19,11 @@ Run a maintenance round on the Panopticon repository.
 - 📁 Process `staging/` directory (move items >3 days old to permanent homes)
   - Hard stop if staging has >10 files or items >7 days old
   - Staging should be temporary chaos, not permanent dumping ground
+- ⏰ Check exploration deadlines (active/warning/overdue explorations)
+  - Runs `check-exploration-deadlines.sh` to validate decision timelines
+  - Reports overdue explorations requiring immediate decision
+  - Warns about explorations with ≤3 days remaining
+  - Flags accepted/rejected proposals needing archival
 - 🗑️ Prune `feedback.md` (archive closed entries >30 days old)
   - Moves to `archive/feedback-archive-YYYY-QN.md`
   - Keeps feedback.md focused on recent/actionable items
@@ -138,6 +143,21 @@ def housekeeping():
             print("    ✅ No stale items in staging/")
     else:
         print("  ✅ No staging/ directory (all clean)")
+
+    # Check exploration deadlines
+    print("\n  → Checking exploration deadlines...")
+    result = subprocess.run(
+        [".claude/scripts/shared/check-exploration-deadlines.sh"],
+        capture_output=True,
+        text=True
+    )
+    print(result.stdout)
+    if result.returncode == 1:
+        print("    ❌ Overdue explorations require immediate attention!")
+    elif result.returncode == 0 and "warning" in result.stdout.lower():
+        print("    ⚠️  Some explorations need decisions soon")
+    else:
+        print("    ✅ All explorations on track")
 
     # Check feedback.md for pruning
     feedback = Path("feedback.md")
