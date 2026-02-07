@@ -214,6 +214,7 @@ The API supports rate limiting of 1000 requests/minute [source: api-docs.md:45].
 **Process:**
 
 **staleness-checker:**
+- **Pre-flight:** Run `.claude/scripts/shared/validate-metadata.sh` to ensure attribution metadata exists
 - Validates documented claims against sources
 - Updates `validation.last_checked` and `validation.status`
 - Flags `out_of_date: true` when source contradicts documentation
