@@ -237,7 +237,7 @@ McPanda integrates with multiple Ampersand services:
 
 ## Related Components
 
-- **amp-ctx** → Context management and environment detection (see `infrastructure/amp-ctx.md` - TBD)
+- **amp-ctx** → Context management and environment detection (external tool, not yet documented in Panopticon)
 - **builder-mcp** → MCP server for integration builders (see `services/builder-mcp.md` - listed in services-index.md)
 - **API Service** → REST API server (see `services/api.md` - TBD)
 - **Temporal** → Workflow orchestration (see `services/temporal.md` - TBD)
